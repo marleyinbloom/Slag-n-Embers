@@ -52,18 +52,6 @@ public class ModularArmorItem extends Item implements Equipable {
         return getArmorType(stack).getSlot();
     }
 
-    public int getDefense(ItemStack stack) {
-        return averageMod(stack, IToolPart::getTough);
-    }
-    public int getToughness(ItemStack stack) {
-        return stack.getOrDefault(AllDataComponents.ARMOR_TOUGHNESS, 0);
-    }
-    public int getKnockbackResistance(ItemStack stack) {
-        return stack.getOrDefault(AllDataComponents.ARMOR_KNOCKBACK_RESISTANCE, 0);
-    }
-
-
-
     public static final IntFunction<ArmorItem.Type> BY_ID = ByIdMap.continuous(ModularArmorItem::typeID, ArmorItem.Type.values(), ByIdMap.OutOfBoundsStrategy.WRAP);
     public static final StreamCodec<ByteBuf, ArmorItem.Type> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, ModularArmorItem::typeID);
 

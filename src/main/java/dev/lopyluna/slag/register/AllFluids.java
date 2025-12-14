@@ -42,30 +42,32 @@ import static dev.lopyluna.slag.SlagEmbers.REG;
 
 @SuppressWarnings("unused")
 public class AllFluids {
-    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_OBSIDIAN = newMoltenFluid("Obsidian", () -> 0x0D0B12).register();
-
+    /* FUCK YOU
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_OBSIDIAN =
+            newMoltenFluid("Obsidian", () -> 0x0D0B12).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_AMETHYST =
             newMoltenFluid("Amethyst", () -> 0xBA8EE4).register();
-    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_COPPER =
-            newMoltenFluid("Copper", () -> 0xD46F4C).register();
-    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_DIAMOND =
-            newMoltenFluid("Diamond", () -> 0x59E0CD).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_EMERALD =
             newMoltenFluid("Emerald", () -> 0x39D66C).register();
-    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_GOLD =
-            newMoltenFluid("Gold", () -> 0xFBE870).register();
-    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_IRON =
-            newMoltenFluid("Iron", () -> 0xB8BFC4).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_LAPIS =
             newMoltenFluid("Lapis", () -> 0x325BB2).register();
-    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_NETHERITE =
-            newMoltenFluid("Netherite", () -> 0x585157).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_PRISMARINE =
             newMoltenFluid("Prismarine", () -> 0x86BEAF).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_QUARTZ =
             newMoltenFluid("Quartz", () -> 0xEBE4D5).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_REDSTONE =
             newMoltenFluid("Redstone", () -> 0xCB1909).register();
+    */
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_COPPER =
+            newMoltenFluid("Copper", () -> 0xD46F4C).register();
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_DIAMOND =
+            newMoltenFluid("Diamond", () -> 0x59E0CD).register();
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_GOLD =
+            newMoltenFluid("Gold", () -> 0xFBE870).register();
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_IRON =
+            newMoltenFluid("Iron", () -> 0xB8BFC4).register();
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_NETHERITE =
+            newMoltenFluid("Netherite", () -> 0x585157).register();
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_ROSE_GOLD =
             newMoltenFluid("Rose Gold", () -> 0xFBA4AB).register();
 

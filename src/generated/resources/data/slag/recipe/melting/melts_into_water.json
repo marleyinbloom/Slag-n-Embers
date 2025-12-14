@@ -1,0 +1,10 @@
+{
+  "type": "slag:melting",
+  "ingredient": {
+    "tag": "slag:melts_into_water"
+  },
+  "result": {
+    "amount": 1000,
+    "id": "minecraft:water"
+  }
+}

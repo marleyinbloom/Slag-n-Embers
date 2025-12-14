@@ -51,17 +51,17 @@ public class AllTags {
         ;
         prov.tag(MOLTEN_GEMS)
                 .add(AllFluids.MOLTEN_DIAMOND.getSource())
-                .add(AllFluids.MOLTEN_EMERALD.getSource())
-                .add(AllFluids.MOLTEN_LAPIS.getSource())
+                //.add(AllFluids.MOLTEN_EMERALD.getSource())
+                //.add(AllFluids.MOLTEN_LAPIS.getSource())
         ;
         prov.tag(MOLTEN_CRYSTALS)
-                .add(AllFluids.MOLTEN_AMETHYST.getSource())
-                .add(AllFluids.MOLTEN_PRISMARINE.getSource())
-                .add(AllFluids.MOLTEN_QUARTZ.getSource())
+                //.add(AllFluids.MOLTEN_AMETHYST.getSource())
+                //.add(AllFluids.MOLTEN_PRISMARINE.getSource())
+                //.add(AllFluids.MOLTEN_QUARTZ.getSource())
         ;
         prov.tag(MOLTEN_DUSTS)
-                .add(AllFluids.MOLTEN_REDSTONE.getSource())
-                .add(AllFluids.MOLTEN_OBSIDIAN.getSource())
+                //.add(AllFluids.MOLTEN_REDSTONE.getSource())
+                //.add(AllFluids.MOLTEN_OBSIDIAN.getSource())
         ;
     }
 
@@ -99,6 +99,9 @@ public class AllTags {
 
     public static TagKey<Item> MOLDS_REUSABLE = item("molds/reusable");
     public static TagKey<Item> MOLDS_SINGLE = item("molds/single");
+
+    public static TagKey<Item> MELTS_INTO_LAVA = item("melts_into_lava");
+    public static TagKey<Item> MELTS_INTO_WATER = item("melts_into_water");
 
     public static TagKey<Item> BLACKLISTED_HOTBAR_ITEMS = item("blacklisted_hotbar_items");
 
@@ -142,6 +145,18 @@ public class AllTags {
                 .add(Items.WAXED_WEATHERED_COPPER)
                 .add(Items.WAXED_OXIDIZED_COPPER)
                 .addTag(Tags.Items.STORAGE_BLOCKS_COPPER);
+
+        prov.tag(MELTS_INTO_LAVA)
+                .add(Items.BLACKSTONE)
+                .addTag(Tags.Items.STONES)
+                .addTag(Tags.Items.COBBLESTONES)
+                .addTag(Tags.Items.OBSIDIANS);
+
+        prov.tag(MELTS_INTO_WATER)
+                .add(Items.ICE)
+                .add(Items.PACKED_ICE)
+                .add(Items.BLUE_ICE)
+                .add(Items.SNOW_BLOCK);
     }
 
     public static TagKey<Block> block(String name) { return TagKey.create(Registries.BLOCK, SlagEmbers.loc(name)); }

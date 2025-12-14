@@ -37,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class MelterBE extends SmartBlockEntity implements MenuProvider {
+    public static final int SIMPLE_BLOCK_SIZE = 1000; //STONE/OBSIDIAN/ICE/HONEY
     public static final int BLOCK_SIZE = 648; //BLOCKS | 1:1
     public static final int SMALL_BLOCK_SIZE = 288; //SMALL/CRYSTAL BLOCKS | 1:2.25
     public static final int CRYSTAL_SIZE = 162; //PEARL/BALL/CRYSTALS | 1:4

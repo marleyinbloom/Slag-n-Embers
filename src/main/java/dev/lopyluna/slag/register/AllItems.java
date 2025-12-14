@@ -70,29 +70,31 @@ public class AllItems {
 
     public static final List<MaterialType> MATERIAL_TYPES = AllMaterials.MATERIAL_TYPES;
 
-    public static final MaterialType WOOD = AllMaterials.WOOD;
+    /*
     public static final MaterialType GLOWSTONE = AllMaterials.GLOWSTONE;
-    public static final MaterialType STONE = AllMaterials.STONE;
     public static final MaterialType REDSTONE = AllMaterials.REDSTONE;
     public static final MaterialType LAPIS = AllMaterials.LAPIS;
-    public static final MaterialType COPPER = AllMaterials.COPPER;
     public static final MaterialType AMETHYST = AllMaterials.AMETHYST;
-    public static final MaterialType GOLD = AllMaterials.GOLD;
-    public static final MaterialType IRON = AllMaterials.IRON;
-    public static final MaterialType ROSE_GOLD = AllMaterials.ROSE_GOLD;
     public static final MaterialType QUARTZ = AllMaterials.QUARTZ;
     public static final MaterialType EMERALD = AllMaterials.EMERALD;
-    public static final MaterialType DEEP_ALLOY_MATERIAL = AllMaterials.DEEP_ALLOY_MATERIAL;
     public static final MaterialType PRISMARINE = AllMaterials.PRISMARINE;
     public static final MaterialType BLUE_ICE = AllMaterials.BLUE_ICE;
-    public static final MaterialType DIAMOND = AllMaterials.DIAMOND;
     public static final MaterialType OBSIDIAN = AllMaterials.OBSIDIAN;
     public static final MaterialType ECHO = AllMaterials.ECHO;
-    public static final MaterialType NETHERITE = AllMaterials.NETHERITE;
     public static final MaterialType POPPED_CHORUS = AllMaterials.POPPED_CHORUS;
     public static final MaterialType NAUTILUS = AllMaterials.NAUTILUS;
     public static final MaterialType BONE = AllMaterials.BONE;
     public static final MaterialType FLINT = AllMaterials.FLINT;
+     */
+    public static final MaterialType WOOD = AllMaterials.WOOD;
+    public static final MaterialType STONE = AllMaterials.STONE;
+    public static final MaterialType COPPER = AllMaterials.COPPER;
+    public static final MaterialType GOLD = AllMaterials.GOLD;
+    public static final MaterialType IRON = AllMaterials.IRON;
+    public static final MaterialType ROSE_GOLD = AllMaterials.ROSE_GOLD;
+    public static final MaterialType DEEP_ALLOY_MATERIAL = AllMaterials.DEEP_ALLOY_MATERIAL;
+    public static final MaterialType DIAMOND = AllMaterials.DIAMOND;
+    public static final MaterialType NETHERITE = AllMaterials.NETHERITE;
 
     static {
 
@@ -217,7 +219,6 @@ public class AllItems {
                         var cast = getCast(part);
 
                         var size = MelterBE.INGOT_SIZE;
-                        if (fluid == AllFluids.MOLTEN_OBSIDIAN.getSource()) size = MelterBE.BLOCK_SIZE;
                         size *= getSize(part);
                         if (size > 0 && fluid == AllFluids.MOLTEN_NETHERITE.getSource()) size = MelterBE.INGOT_SIZE;
 

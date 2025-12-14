@@ -12,16 +12,16 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class MaterialType {
-    final float speed;
-    final float dura;
-    final float tough;
-    final float sharp;
+    public final float speed;
+    public final float dura;
+    public final float tough;
+    public final float sharp;
 
-    final float kbRes;
-    final float defence;
-    final float toughness;
+    public final float kbRes;
+    public final float defence;
+    public final float toughness;
 
-    final float ench;
+    public final float ench;
 
 
     public final String texture;
