@@ -32,43 +32,25 @@ public class ClientTooltips {
                     return;
                 }
                 if (!(item instanceof BakedModularToolItem)) {
-                    var player = Minecraft.getInstance().player;
                     var tier = item.averageMod(stack, IToolPart::getTough);
 
                     var rodCount = ModularToolItem.testRodCount(parts);
-                    var f = true;
+                    var ready = true;
                     var stickCount = parts.getItem(Items.STICK).getCount();
                     if (!parts.contains(Items.STICK)) {
                         if (rodCount<=0) tooltip.add(AllLangs.tr("modular_tool_invalid").withStyle(ChatFormatting.RED));
                         else tooltip.add(AllLangs.trArgs("modular_tool_insert_stick", rodCount, rodCount > 1 ? "s" : "").withStyle(ChatFormatting.RED));
-                        f = false;
+                        ready = false;
                     } else if (rodCount != stickCount) {
-                        tooltip.add((rodCount > stickCount ? AllLangs.tr("modular_tool_too_many_stick") : AllLangs.tr("modular_tool_too_few_stick")).withStyle(ChatFormatting.RED));
-                        f = false;
-                    } else if (player != null) {
-                        var lookState = level.getBlockState(Item.getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE).getBlockPos());
-                        var size = parts.size();
-                        if (size > 4) {
-                            if (!lookState.is(BlockTags.ANVIL)) {
-                                tooltip.add(AllLangs.tr("modular_tool_anvil").withStyle(ChatFormatting.RED));
-                                f = false;
-                            }
-                        } else if (size > 3) {
-                            if (!lookState.is(Blocks.SMITHING_TABLE) && !lookState.is(BlockTags.ANVIL)) {
-                                tooltip.add(AllLangs.tr("modular_tool_smithing_table").withStyle(ChatFormatting.RED));
-                                f = false;
-                            }
-                        } else {
-                            if (!lookState.is(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES) && !lookState.is(Blocks.SMITHING_TABLE) && !lookState.is(BlockTags.ANVIL)) {
-                                tooltip.add(AllLangs.tr("modular_tool_crafting_table").withStyle(ChatFormatting.RED));
-                                f = false;
-                            }
-                        }
+                        tooltip.add((rodCount < stickCount ? AllLangs.tr("modular_tool_too_many_stick") : AllLangs.tr("modular_tool_too_few_stick")).withStyle(ChatFormatting.RED));
+                        ready = false;
                     }
-                    if (f) {
-                        if (3.5f >= tier) tooltip.add(AllLangs.tr("modular_tool_crafting_hammer_weak").withStyle(ChatFormatting.RED));
-                        else tooltip.add(AllLangs.trArgs("modular_tool_crafting_hammer", String.valueOf(tier)).withStyle(ChatFormatting.RED));
+
+                    if (ready) {
+                        tooltip.add(AllLangs.trArgs("modular_tool_ready", String.valueOf(tier)).withStyle(ChatFormatting.GREEN));
                     }
+
+                    tooltip.add(AllLangs.tr("modular_tool_remove").withStyle(ChatFormatting.GRAY));
                 }
 
                 AllLangs.modularToolStats(tooltip, parts, stack, item);

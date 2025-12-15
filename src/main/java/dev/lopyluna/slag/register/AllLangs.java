@@ -92,15 +92,17 @@ public class AllLangs {
 
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_invalid"), "Invalid Tool!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_insert_stick"), "Insert %sx Stick%s!");
-        REG.addLang("tooltip", SlagEmbers.loc("modular_tool_too_many_stick"), "Too many Sticks");
+        REG.addLang("tooltip", SlagEmbers.loc("modular_tool_too_many_stick"), "Too many Sticks!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_too_few_stick"), "Too few Sticks!");
+        REG.addLang("tooltip", SlagEmbers.loc("modular_tool_ready"), "Left Click on the Blueprint to forge planned tool!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_anvil"), "Must look at an Anvil atleast to combine said planned tool!!!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_smithing_table"), "Must look at an Smithing Table atleast to combine said planned tool!!!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_crafting_table"), "Must look at an Crafting Table atleast to combine said planned tool!!!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_crafting_hammer_weak"), "Use Rock/Wood type item or Mallet/Hammers on the Blueprint to combine!");
         REG.addLang("tooltip", SlagEmbers.loc("modular_tool_crafting_hammer"), "Use Mallet/Hammers with Forging Tier >= '%s' on the Blueprint to combine!");
 
-        REG.addLang("tooltip", SlagEmbers.loc("modular_tool_waiting"), "Insert Tool Parts to get started!");
+        REG.addLang("tooltip", SlagEmbers.loc("modular_tool_waiting"), "Left-click the Blueprint with Tool Parts to get started!");
+        REG.addLang("tooltip", SlagEmbers.loc("modular_tool_remove"), "Right-click to remove last added Tool Part");
 
         REG.addLang("tooltip", SlagEmbers.loc("modular_stats"), "Modular Stats");
         REG.addLang("tooltip", SlagEmbers.loc("modular_damage"), "Damage");

@@ -83,19 +83,23 @@ public class ModularToolItem extends Item {
     public String getToolMixture(ItemStack pStack) {
         if (pStack.isEmpty()) return "";
         var parts = getParts(pStack);
-        if (parts == null) return "";
+        return getToolMixture(parts);
+    }
+
+    public static String getToolMixture(DataToolParts parts) {
+        if (parts.isEmpty()) return "";
         if (parts.hasAllPartSegments("pickaxe_head")) return "pickaxe";
         if (parts.hasAllPartSegments("axe_head")) return "axe";
         if (parts.hasAllPartSegments("shovel_head")) return "shovel";
         if (parts.hasAllPartSegments("hoe_head")) return "hoe";
-        if (parts.hasAllPartSegments("sword_blade", "guard")) return "sword";
+        if (parts.hasAllPartSegments("sword_blade", "guard")) return "sword";;
+        if (parts.hasAllPartSegments("hammer_head", "guard")) return "hammer";
 
         if (parts.hasAllPartSegments("axe_head", "hoe_head")) return "mattock";
         if (parts.hasAllPartSegments("pickaxe_head", "shovel_head")) return "prybar";
         if (parts.hasAllPartSegments("shovel_head", "hoe_head")) return "graip";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return "mallet";
 
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return "hammer";
         if (parts.hasAllPartSegments("hoe_head", "sword_blade", "guard")) return "scythe";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "sword_blade")) return "maul";
 
@@ -112,7 +116,6 @@ public class ModularToolItem extends Item {
         if (parts.hasAllPartSegments("shovel_head", "hoe_head")) return "graip";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return "mallet";
 
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return "hammer";
         if (parts.hasAllPartSegments("hoe_head", "sword_blade", "guard")) return "scythe";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "sword_blade")) return "maul";
 
@@ -123,21 +126,32 @@ public class ModularToolItem extends Item {
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack other, Slot slot, ClickAction action, Player player, SlotAccess access) {
         if (stack.getCount() != 1) return false;
-        if (action == ClickAction.PRIMARY && slot.allowModification(player)) {
-            var parts = getParts(stack);
-            if (parts == null) return false;
-            var toolParts = parts.itemsCopy();
+        var parts = getParts(stack);
+        if (parts == null) return false;
+        var toolParts = parts.itemsCopy();
+        if (action == ClickAction.SECONDARY && slot.allowModification(player)) {
             if (other.isEmpty()) {
                 if (toolParts.isEmpty()) return false;
-                var itemstack = !parts.contains(Items.STICK) ? toolParts.getFirst() : toolParts.getLast();
+                var itemstack = toolParts.getLast();
                 playRemoveOneSound(player);
                 access.set(itemstack);
-                if (!parts.contains(Items.STICK)) toolParts.removeFirst();
-                else toolParts.removeLast();
+                toolParts.removeLast();
                 setParts(stack, toolParts);
                 return true;
+            }
+        } else if (action == ClickAction.PRIMARY && slot.allowModification(player)) {
+            if (other.isEmpty()) {
+                if (parts.isEmpty() || !parts.contains(Items.STICK)) return false;
+                if (testParts(parts) || !testSticks(parts)) playFailSound(player);
+                else {
+                    playBuildSound(player);
+                    slot.set(stack.transmuteCopy(AllItems.BAKED_TOOL));
+                    if (other.getItem() instanceof BakedModularToolItem) hurtAndBreak(other, 4, player.level(), player);
+                    else other.shrink(1);
+                }
+                return true;
             } else if (other.getItem() instanceof IToolPart part) {
-                if (toolParts.size() > 5 || parts.containsPartSegment(part) || parts.contains(other) || parts.contains(Items.STICK)) plaFailSound(player);
+                if (toolParts.size() > 5 || parts.containsPartSegment(part) || parts.contains(other) || parts.contains(Items.STICK)) playFailSound(player);
                 else {
                     playInsertSound(player);
                     var singleItem = other.copyWithCount(1);
@@ -147,21 +161,18 @@ public class ModularToolItem extends Item {
                 }
                 return true;
             } else if (other.is(Items.STICK)) {
-                if (toolParts.isEmpty() || toolParts.size() > 6 || parts.contains(other) || other.getCount() > 3) plaFailSound(player);
+                var needed = testRodCount(parts);
+                if (toolParts.isEmpty() || toolParts.size() > 6 || parts.contains(other) || needed == 0) playFailSound(player);
                 else {
                     playInsertSound(player);
-                    toolParts.add(other.copy());
-                    access.set(ItemStack.EMPTY);
+                    if (other.getCount() > needed) {
+                        toolParts.add(other.copyWithCount(needed));
+                        other.shrink(needed);
+                    } else {
+                        toolParts.add(other.copy());
+                        access.set(ItemStack.EMPTY);
+                    }
                     setParts(stack, toolParts);
-                }
-                return true;
-            } else if (testIsHammer(other)) {
-                if (!parts.contains(Items.STICK) || testParts(parts) || !test(parts, player) || !testHammer(stack, other)) plaFailSound(player);
-                else {
-                    playBuildSound(player, testStation(player));
-                    slot.set(stack.transmuteCopy(AllItems.BAKED_TOOL));
-                    if (other.getItem() instanceof BakedModularToolItem) hurtAndBreak(other, 4, player.level(), player);
-                    else other.shrink(1);
                 }
                 return true;
             }
@@ -199,45 +210,19 @@ public class ModularToolItem extends Item {
     }
 
     public static boolean testParts(DataToolParts parts) {
-        if (parts.hasAllPartSegments("pickaxe_head")) return false;
-        if (parts.hasAllPartSegments("axe_head")) return false;
-        if (parts.hasAllPartSegments("shovel_head")) return false;
-        if (parts.hasAllPartSegments("hoe_head")) return false;
-        if (parts.hasAllPartSegments("sword_blade", "guard")) return false;
-
-        if (parts.hasAllPartSegments("axe_head", "hoe_head")) return false;
-        if (parts.hasAllPartSegments("pickaxe_head", "shovel_head")) return false;
-        if (parts.hasAllPartSegments("shovel_head", "hoe_head")) return false;
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return false;
-
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return false;
-        if (parts.hasAllPartSegments("hoe_head", "sword_blade", "guard")) return false;
-
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head", "hoe_head", "sword_blade")) return false;
-        return !parts.hasAllPartSegments("pickaxe_head", "axe_head", "sword_blade");
+        return (getToolMixture(parts).isEmpty());
     }
 
     public static int testRodCount(DataToolParts parts) {
-        if (parts.hasAllPartSegments("pickaxe_head")) return 2;
-        if (parts.hasAllPartSegments("axe_head")) return 2;
-        if (parts.hasAllPartSegments("shovel_head")) return 2;
-        if (parts.hasAllPartSegments("hoe_head")) return 2;
-        if (parts.hasAllPartSegments("sword_blade", "guard")) return 1;
-
-        if (parts.hasAllPartSegments("axe_head", "hoe_head")) return 2;
-        if (parts.hasAllPartSegments("pickaxe_head", "shovel_head")) return 2;
-        if (parts.hasAllPartSegments("shovel_head", "hoe_head")) return 2;
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return 2;
-
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return 3;
-        if (parts.hasAllPartSegments("hoe_head", "sword_blade", "guard")) return 3;
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "sword_blade")) return 3;
-
-        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head", "hoe_head", "sword_blade")) return 3;
-        return 0;
+        return switch (getToolMixture(parts)) {
+            case "sword" -> 1;
+            case "pickaxe", "hoe", "axe", "shovel", "mattock", "prybar", "graip", "mallet" -> 2;
+            case "hammer", "scythe", "maul", "paxel" -> 3;
+            default -> 0;
+        };
     }
 
-    private void plaFailSound(Entity entity) {
+    private void playFailSound(Entity entity) {
         entity.playSound(SoundEvents.CRAFTER_FAIL, 1.25F, 0.5F + entity.level().getRandom().nextFloat() * 0.4F);
         entity.playSound(SoundEvents.NOTE_BLOCK_BASS.value(), 0.5F, 0.5F + entity.level().getRandom().nextFloat() * 0.4F);
     }
@@ -250,8 +235,8 @@ public class ModularToolItem extends Item {
         entity.playSound(SoundEvents.DECORATED_POT_INSERT, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
     }
 
-    private void playBuildSound(Entity entity, @Nullable SoundEvent event) {
-        entity.playSound(event != null ? event : SoundEvents.ANVIL_USE, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+    private void playBuildSound(Entity entity) {
+        entity.playSound(SoundEvents.SMITHING_TABLE_USE, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
     }
 
     public boolean testIsHammer(ItemStack other) {
@@ -276,36 +261,17 @@ public class ModularToolItem extends Item {
         return false;
     }
 
-    public SoundEvent testStation(Player player) {
-        var level = player.level();
-        var state = level.getBlockState(Item.getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE).getBlockPos());
-        if (state.is(BlockTags.ANVIL)) return SoundEvents.ANVIL_USE;
-        if (state.is(Blocks.SMITHING_TABLE)) return SoundEvents.SMITHING_TABLE_USE;
-        if (state.is(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES)) return SoundEvents.CRAFTER_CRAFT;
-        return null;
-    }
-
     public float hammerTier(DataToolParts parts, ItemStack stack) {
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return Math.max(averageMod(stack, IToolPart::getTough) + 1.5f, 4f);
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return Math.max(averageMod(stack, IToolPart::getTough) + 1f, 3.5f);
         return 0;
     }
 
-    public boolean test(DataToolParts parts, Player player) {
-        var level = player.level();
+    public boolean testSticks(DataToolParts parts) {
         var rodCount = testRodCount(parts);
 
-        if (!parts.contains(Items.STICK)) {
-            return false;
-        } else if (rodCount != parts.getItem(Items.STICK).getCount()) {
-           return false;
-        } else {
-            var lookState = level.getBlockState(Item.getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE).getBlockPos());
-            var size = parts.size();
-            if (size > 4) return lookState.is(BlockTags.ANVIL);
-            else if (size > 3) return lookState.is(Blocks.SMITHING_TABLE) || lookState.is(BlockTags.ANVIL);
-            else return lookState.is(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES) || lookState.is(Blocks.SMITHING_TABLE) || lookState.is(BlockTags.ANVIL);
-        }
+        if (!parts.contains(Items.STICK)) return false;
+        return rodCount == parts.getItem(Items.STICK).getCount();
     }
 
     @Override
