@@ -93,12 +93,12 @@ public class ModularToolItem extends Item {
         if (parts.hasAllPartSegments("shovel_head")) return "shovel";
         if (parts.hasAllPartSegments("hoe_head")) return "hoe";
         if (parts.hasAllPartSegments("sword_blade", "guard")) return "sword";;
-        if (parts.hasAllPartSegments("hammer_head", "guard")) return "hammer";
 
         if (parts.hasAllPartSegments("axe_head", "hoe_head")) return "mattock";
         if (parts.hasAllPartSegments("pickaxe_head", "shovel_head")) return "prybar";
         if (parts.hasAllPartSegments("shovel_head", "hoe_head")) return "graip";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return "mallet";
+        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return "hammer";
 
         if (parts.hasAllPartSegments("hoe_head", "sword_blade", "guard")) return "scythe";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "sword_blade")) return "maul";
@@ -116,6 +116,7 @@ public class ModularToolItem extends Item {
         if (parts.hasAllPartSegments("shovel_head", "hoe_head")) return "graip";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head")) return "mallet";
 
+        if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "shovel_head")) return "hammer";
         if (parts.hasAllPartSegments("hoe_head", "sword_blade", "guard")) return "scythe";
         if (parts.hasAllPartSegments("pickaxe_head", "axe_head", "sword_blade")) return "maul";
 
