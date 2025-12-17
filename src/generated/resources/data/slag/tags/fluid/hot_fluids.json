@@ -11,6 +11,10 @@
     "slag:flowing_molten_netherite",
     "slag:molten_netherite",
     "slag:flowing_molten_rose_gold",
-    "slag:molten_rose_gold"
+    "slag:molten_rose_gold",
+    "slag:flowing_molten_zinc",
+    "slag:molten_zinc",
+    "slag:flowing_molten_brass",
+    "slag:molten_brass"
   ]
 }

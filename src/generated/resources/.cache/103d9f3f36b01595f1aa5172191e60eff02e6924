@@ -1,4 +1,6 @@
-// 1.21.1	2025-12-14T12:29:26.341879558	Registries
+// 1.21.1	2025-12-17T16:16:22.233853565	Registries
+ac75b7659a0ab5ad21a0e6202ae790b168c98fa2 data/slag/slag/materials/andesite.json
+c3ace98efbe32d3a958dc340f4a3f7f818b72c6b data/slag/slag/materials/brass.json
 889f7c1e7b4cc71d2d49c04ac16a19b54137671e data/slag/slag/materials/copper.json
 f8456a579267be67304d3b96af96808d2a44eebd data/slag/slag/materials/deep_alloy.json
 12fd9ef5025c5c37e9cb61e73806decf7dc8d287 data/slag/slag/materials/diamond.json
@@ -8,3 +10,4 @@ b19fdaca3a89ccebbd08c08950173b0f23f5ccc6 data/slag/slag/materials/golden.json
 0b0c8158d644b8c4942f537c062cbd6530441988 data/slag/slag/materials/rose_gold.json
 27ed47c3b19023741749f0012bbef8feaf568597 data/slag/slag/materials/stone.json
 5f64bfb867996b13e30a6a1511b5f482f4437397 data/slag/slag/materials/wooden.json
+3abe3a8479c11911c08ce6ce09e018c62f173117 data/slag/slag/materials/zinc.json

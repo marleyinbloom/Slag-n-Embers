@@ -1,5 +1,6 @@
 package dev.lopyluna.slag.register;
 
+import com.simibubi.create.AllItems;
 import dev.lopyluna.slag.content.items.MaterialType;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -230,6 +231,36 @@ public class AllMaterials {
             .setTexture("metal")
             .fireProof()
             .moltenFluid(AllFluids.MOLTEN_NETHERITE::getSource)
+            .registerTool());
+
+
+    public static final MaterialType ANDESITE = register(new MaterialType.Builder("andesite", () -> Ingredient.of(AllItems.ANDESITE_ALLOY))
+            .setSharp(4f)
+            .setDura(128)
+            .setTough(3)
+            .setSpeed(4)
+            .setEnch(5)
+            .setTexture("soft")
+            .registerTool());
+
+    public static final MaterialType ZINC = register(new MaterialType.Builder("zinc", () -> Ingredient.of(AllItems.ZINC_INGOT))
+            .setSharp(7f)
+            .setDura(2048)
+            .setTough(6)
+            .setSpeed(9)
+            .setEnch(15)
+            .moltenFluid(AllFluids.MOLTEN_ZINC::getSource)
+            .registerTool());
+
+    public static final MaterialType BRASS = register(new MaterialType.Builder("brass", () -> Ingredient.of(AllItems.BRASS_INGOT))
+            .setSharp(7f)
+            .setDura(2048)
+            .setTough(6)
+            .setSpeed(9)
+            .setEnch(15)
+            .setTexture("shiny")
+            .fireProof()
+            .moltenFluid(AllFluids.MOLTEN_BRASS::getSource)
             .registerTool());
 
     private static MaterialType register(MaterialType material) {

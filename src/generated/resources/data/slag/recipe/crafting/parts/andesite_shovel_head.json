@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "create:andesite_alloy"
+    },
+    "R": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "M",
+    "R",
+    "R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:andesite_shovel_head"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "slag:basin_casting",
+  "ingredient": {
+    "amount": 648,
+    "id": "slag:molten_zinc"
+  },
+  "result": {
+    "count": 1,
+    "id": "create:zinc_block"
+  }
+}

@@ -8,6 +8,9 @@
     "slag:rose_gold_guard",
     "slag:deep_alloy_guard",
     "slag:diamond_guard",
-    "slag:netherite_guard"
+    "slag:netherite_guard",
+    "slag:andesite_guard",
+    "slag:zinc_guard",
+    "slag:brass_guard"
   ]
 }

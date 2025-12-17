@@ -38,6 +38,13 @@
 
     { "type": "single", "resource": "slag:fluid/molten_rose_gold_flow" },
     { "type": "single", "resource": "slag:fluid/molten_rose_gold_still" },
+
+
+    { "type": "single", "resource": "slag:fluid/molten_brass_flow" },
+    { "type": "single", "resource": "slag:fluid/molten_brass_still" },
+
+    { "type": "single", "resource": "slag:fluid/molten_zinc_flow" },
+    { "type": "single", "resource": "slag:fluid/molten_zinc_still" },
     {
       "type": "paletted_permutations",
       "textures": [
@@ -181,7 +188,9 @@
         "wooden": "slag:color_palettes/wooden",
         "stone": "slag:color_palettes/stone",
         "nautilus": "slag:color_palettes/nautilus",
-        "bone": "slag:color_palettes/bone"
+        "bone": "slag:color_palettes/bone",
+
+        "andesite": "slag:color_palettes/andesite"
       }
     },
     {
@@ -240,7 +249,9 @@
         "deep_alloy": "slag:color_palettes/deep_alloy",
         "blue_icy": "slag:color_palettes/blue_icy",
         "diamond": "slag:color_palettes/diamond",
-        "obsidian": "slag:color_palettes/obsidian"
+        "obsidian": "slag:color_palettes/obsidian",
+
+        "brass": "slag:color_palettes/brass"
       }
     },
     {
@@ -295,7 +306,9 @@
         "copper": "slag:color_palettes/copper",
         "lapis": "slag:color_palettes/lapis",
         "prismarine": "slag:color_palettes/prismarine",
-        "purpur": "slag:color_palettes/purpur"
+        "purpur": "slag:color_palettes/purpur",
+
+        "zinc": "slag:color_palettes/zinc"
       }
     }
   ]

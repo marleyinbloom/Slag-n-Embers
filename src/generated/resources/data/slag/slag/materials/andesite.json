@@ -1,0 +1,12 @@
+{
+  "dura": 128.0,
+  "ench": 5.0,
+  "id": "andesite",
+  "repair_ingredient": {
+    "item": "create:andesite_alloy"
+  },
+  "sharp": 4.0,
+  "speed": 4.0,
+  "texture": "soft",
+  "tough": 3.0
+}

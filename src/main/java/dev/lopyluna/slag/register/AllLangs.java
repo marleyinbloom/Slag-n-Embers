@@ -139,7 +139,8 @@ public class AllLangs {
 
         for (var material : List.of("purpur", "flint", "bone", "nautilus", "rose_gold", "deep_alloy",
                 "wooden", "stone", "quartz", "iron", "golden", "diamond", "netherite", "redstone", "copper",
-                "emerald", "lapis", "amethyst", "obsidian", "blue_icy", "echo", "prismarine", "glowstone"
+                "emerald", "lapis", "amethyst", "obsidian", "blue_icy", "echo", "prismarine", "glowstone",
+                "andesite", "zinc", "brass"
         )) for (var mixture : List.of("pickaxe", "axe", "shovel", "hoe", "sword", "mattock", "prybar", "graip", "mallet", "hammer", "scythe", "maul", "paxel")) {
             var name = material + "_" + mixture;
             REG.addRawLang(Util.makeDescriptionId("item", SlagEmbers.loc(name)), RegistrateLangProvider.toEnglishName(name));

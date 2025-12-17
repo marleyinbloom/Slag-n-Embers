@@ -91,6 +91,9 @@ public class AllBlocks {
 
                 AlloyingRecipeBuilder.create(AllFluids.MOLTEN_ROSE_GOLD.getSource(), MelterBE.NUGGET_SIZE * 2, fluid(AllFluids.MOLTEN_GOLD.getSource(), MelterBE.NUGGET_SIZE), fluid(AllFluids.MOLTEN_COPPER.getSource(), MelterBE.NUGGET_SIZE))
                         .unlockedBy("has_lava", has(Items.LAVA_BUCKET)).save(p, SlagEmbers.loc("alloying/molten_rose_gold"));
+
+                AlloyingRecipeBuilder.create(AllFluids.MOLTEN_BRASS.getSource(), MelterBE.NUGGET_SIZE * 2, fluid(AllFluids.MOLTEN_ZINC.getSource(), MelterBE.NUGGET_SIZE), fluid(AllFluids.MOLTEN_COPPER.getSource(), MelterBE.NUGGET_SIZE))
+                        .unlockedBy("has_lava", has(Items.LAVA_BUCKET)).save(p, SlagEmbers.loc("alloying/molten_brass"));
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -135,6 +138,13 @@ public class AllBlocks {
                 create(p, "nugget", "iron", Items.IRON_NUGGET, AllFluids.MOLTEN_IRON, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
                 create(p, "nugget", "rose_gold", AllItems.ROSE_GOLD_NUGGET.get(), AllFluids.MOLTEN_ROSE_GOLD, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
 
+                //Create
+                create(p, "ingot", "zinc", com.simibubi.create.AllItems.ZINC_INGOT.get(), AllFluids.MOLTEN_ZINC, MelterBE.INGOT_SIZE, AllTags.CAST_INGOTS);
+                create(p, "ingot", "brass", com.simibubi.create.AllItems.BRASS_INGOT.get(), AllFluids.MOLTEN_BRASS, MelterBE.INGOT_SIZE, AllTags.CAST_INGOTS);
+
+                create(p, "nugget", "copper", com.simibubi.create.AllItems.COPPER_NUGGET.get(), AllFluids.MOLTEN_COPPER, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
+                create(p, "nugget", "zinc", com.simibubi.create.AllItems.ZINC_NUGGET.get(), AllFluids.MOLTEN_ZINC, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
+                create(p, "nugget", "brass", com.simibubi.create.AllItems.BRASS_NUGGET.get(), AllFluids.MOLTEN_BRASS, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
@@ -180,6 +190,11 @@ public class AllBlocks {
                 BasinCastingRecipeBuilder.create(ROSE_GOLD_BLOCK.asItem(), 1, AllFluids.MOLTEN_ROSE_GOLD.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(AllTags.itemC("storage_blocks/rose_gold"))).save(p, SlagEmbers.loc("casting/basin/rose_gold_block"));
                 BasinCastingRecipeBuilder.create(Items.STONE, 1, Fluids.LAVA.getSource(), MelterBE.SIMPLE_BLOCK_SIZE).unlockedBy("has_block", has(Items.STONE)).save(p, SlagEmbers.loc("casting/basin/stone"));
 
+                //Create
+                BasinCastingRecipeBuilder.create(com.simibubi.create.AllBlocks.ZINC_BLOCK.asItem(), 1, AllFluids.MOLTEN_ZINC.getSource(), MelterBE.BLOCK_SIZE)
+                        .unlockedBy("has_block", has(com.simibubi.create.AllBlocks.ZINC_BLOCK.asItem())).save(p, SlagEmbers.loc("casting/basin/zinc_block"));
+                BasinCastingRecipeBuilder.create(com.simibubi.create.AllBlocks.BRASS_BLOCK.asItem(), 1, AllFluids.MOLTEN_BRASS.getSource(), MelterBE.BLOCK_SIZE)
+                        .unlockedBy("has_block", has(com.simibubi.create.AllBlocks.BRASS_BLOCK.asItem())).save(p, SlagEmbers.loc("casting/basin/brass_block"));
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
@@ -210,7 +225,7 @@ public class AllBlocks {
                         .pattern("AAA")
                         .pattern("RDR")
                         .pattern("AAA")
-                        .define('A', AllTags.itemC("ingots/deep_alloy")).define('R', AllTags.itemC("ingots/rose_gold")).define('D', DRAIN.get())
+                        .define('A', AllTags.itemC("ingots/deep_alloy")).define('R', AllTags.itemC("ingots/copper")).define('D', DRAIN.get())
                         .unlockedBy("has_deep_alloy", has(AllTags.itemC("ingots/deep_alloy"))).save(p, SlagEmbers.loc("crafting/" + c.getName()));
 
                 /*
@@ -245,6 +260,10 @@ public class AllBlocks {
                         .unlockedBy("has_melts_into_water", has(AllTags.MELTS_INTO_WATER))
                         .save(p, SlagEmbers.loc("melting/melts_into_water"));
 
+                ingotMeltable(p, "zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/zinc"), AllTags.itemC("ingots/zinc"), AllTags.itemC("nuggets/zinc"));
+                ingotMeltable(p, "brass", AllFluids.MOLTEN_BRASS.getSource(), AllTags.itemC("storage_blocks/brass"), AllTags.itemC("ingots/brass"), AllTags.itemC("nuggets/brass"));
+
+                oreMeltable(p, "raw_zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/raw_zinc"), AllTags.itemC("raw_materials/zinc"), null);
                 /*
                 MeltingRecipeBuilder.create(AllFluids.MOLTEN_AMETHYST.getSource(), MelterBE.INGOT_SIZE * 3, Items.LARGE_AMETHYST_BUD)
                         .unlockedBy("has_meltable_buds", has(Tags.Items.BUDS))
@@ -270,9 +289,9 @@ public class AllBlocks {
             .tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
                     .pattern("AA")  .pattern("GG")
-                    .define('A', AllTags.itemC("ingots/deep_alloy")).define('G', AllTags.itemC("ingots/gold"))
+                    .define('A', AllTags.itemC("ingots/deep_alloy")).define('G', AllTags.itemC("ingots/brass"))
                     .unlockedBy("has_deep_alloy", has(AllTags.itemC("ingots/deep_alloy"))).save(p, SlagEmbers.loc("crafting/" + c.getName())))
-            .lang("Fluid Interface")
+            .lang("Alloying Interface")
             .simpleItem()
             .register();
 

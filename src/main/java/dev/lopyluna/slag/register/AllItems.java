@@ -96,6 +96,10 @@ public class AllItems {
     public static final MaterialType DIAMOND = AllMaterials.DIAMOND;
     public static final MaterialType NETHERITE = AllMaterials.NETHERITE;
 
+    public static final MaterialType ANDESITE = AllMaterials.ANDESITE;
+    public static final MaterialType ZINC = AllMaterials.ZINC;
+    public static final MaterialType BRASS = AllMaterials.BRASS;
+
     static {
 
         TOOL_PART_TYPES.add(AXE_HEAD);

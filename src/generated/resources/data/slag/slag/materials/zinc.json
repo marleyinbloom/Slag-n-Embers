@@ -1,0 +1,12 @@
+{
+  "dura": 2048.0,
+  "ench": 15.0,
+  "id": "zinc",
+  "molten_fluid": "slag:molten_zinc",
+  "repair_ingredient": {
+    "item": "create:zinc_ingot"
+  },
+  "sharp": 7.0,
+  "speed": 9.0,
+  "tough": 6.0
+}

@@ -1,5 +1,7 @@
 package dev.lopyluna.slag.register;
 
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import dev.lopyluna.slag.SlagEmbers;
 import net.minecraft.core.Holder;
@@ -48,6 +50,9 @@ public class AllTags {
                 .add(AllFluids.MOLTEN_IRON.getSource())
                 .add(AllFluids.MOLTEN_NETHERITE.getSource())
                 .add(AllFluids.MOLTEN_ROSE_GOLD.getSource())
+
+                .add(AllFluids.MOLTEN_ZINC.getSource())
+                .add(AllFluids.MOLTEN_BRASS.getSource())
         ;
         prov.tag(MOLTEN_GEMS)
                 .add(AllFluids.MOLTEN_DIAMOND.getSource())
@@ -105,6 +110,8 @@ public class AllTags {
 
     public static TagKey<Item> BLACKLISTED_HOTBAR_ITEMS = item("blacklisted_hotbar_items");
 
+    public static TagKey<Item> ZINC_RAW_MATERIALS = item("zinc_raw_materials");
+
     public static void genItemTags(RegistrateTagsProvider<Item> provIn) {
         TagsProvider<Item> prov = new TagsProvider<>(provIn, Item::builtInRegistryHolder);
 
@@ -151,12 +158,16 @@ public class AllTags {
                 .addTag(Tags.Items.STONES)
                 .addTag(Tags.Items.COBBLESTONES)
                 .addTag(Tags.Items.OBSIDIANS);
-
         prov.tag(MELTS_INTO_WATER)
                 .add(Items.ICE)
                 .add(Items.PACKED_ICE)
                 .add(Items.BLUE_ICE)
                 .add(Items.SNOW_BLOCK);
+
+        prov.tag(ZINC_RAW_MATERIALS)
+                .add(AllBlocks.ZINC_ORE.asItem())
+                .add(AllBlocks.DEEPSLATE_ZINC_ORE.asItem())
+                .add(AllItems.RAW_ZINC.asItem());
     }
 
     public static TagKey<Block> block(String name) { return TagKey.create(Registries.BLOCK, SlagEmbers.loc(name)); }
