@@ -67,7 +67,14 @@ public class CrucibleBE extends FluidMultiBlockEntity {
         Shape shape = state.getValue(SHAPE);
 
 
-        if (shape.isCorner()) {
+        if (shape.equals(Shape.PLAIN)) {
+            if (level.getBlockEntity(pos.relative(Direction.NORTH)) instanceof InterfaceBE ||
+                    level.getBlockEntity(pos.relative(Direction.SOUTH)) instanceof InterfaceBE ||
+                    level.getBlockEntity(pos.relative(Direction.EAST)) instanceof InterfaceBE ||
+                    level.getBlockEntity(pos.relative(Direction.WEST)) instanceof InterfaceBE) {
+                return true;
+            }
+        } else if (shape.isCorner()) {
             switch (shape) {
                 case NE -> {
                     if (level.getBlockEntity(pos.relative(Direction.NORTH)) instanceof InterfaceBE ||

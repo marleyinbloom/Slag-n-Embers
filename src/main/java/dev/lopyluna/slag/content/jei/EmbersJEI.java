@@ -111,6 +111,7 @@ public class EmbersJEI implements IModPlugin {
         registration.addRecipeCatalyst(AllItems.SANDSTONE_MOLD, EmbersRecipesJEI.TABLE_CASTING.get());
         registration.addRecipeCatalyst(AllItems.TERRACOTTA_MOLD, EmbersRecipesJEI.TABLE_CASTING.get());
         registration.addRecipeCatalyst(AllBlocks.BASIN, EmbersRecipesJEI.BASIN_CASTING.get());
+        registration.addRecipeCatalyst(AllBlocks.INTERFACE, EmbersRecipesJEI.ALLOYING.get());
         registration.addRecipeCatalyst(AllBlocks.CRUCIBLE, EmbersRecipesJEI.ALLOYING.get());
     }
 
