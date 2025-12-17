@@ -25,11 +25,16 @@ import java.util.function.Consumer;
 public class CrucibleTank extends FluidTank {
     public List<FluidStack> fluids = new ArrayList<>();
     private final Consumer<List<FluidStack>> updateCallback;
+    private boolean canAlloy = false;
 
     public CrucibleTank(int capacity, Consumer<List<FluidStack>> updateCallback) {
         super(capacity);
         this.updateCallback = updateCallback;
         fluids.add(FluidStack.EMPTY);
+    }
+
+    public void setCanAlloy(boolean can) {
+        this.canAlloy = can;
     }
 
     @Override
@@ -264,6 +269,7 @@ public class CrucibleTank extends FluidTank {
 
     public boolean tryAlloy(Level level, int maxCraftsPerCall) {
         if (level.isClientSide) return false;
+        if (!canAlloy) return false;
 
         boolean changed = false;
         int crafts = 0;

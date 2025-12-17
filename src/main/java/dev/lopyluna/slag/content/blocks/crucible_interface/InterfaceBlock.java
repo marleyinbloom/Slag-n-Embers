@@ -2,6 +2,7 @@ package dev.lopyluna.slag.content.blocks.crucible_interface;
 
 import com.mojang.serialization.MapCodec;
 import dev.lopyluna.slag.content.blocks.BEBlock;
+import dev.lopyluna.slag.content.blocks.crucible.CrucibleBE;
 import dev.lopyluna.slag.content.utils.ShapeUtils;
 import dev.lopyluna.slag.register.AllBETypes;
 import net.minecraft.core.BlockPos;
@@ -37,6 +38,26 @@ public class InterfaceBlock extends BEBlock {
     public InterfaceBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        super.onPlace(state, level, pos, oldState, movedByPiston);
+
+        var posRel = pos.relative(state.getValue(FACING).getOpposite());
+        if (level.getBlockEntity(posRel) instanceof CrucibleBE crucible) {
+            crucible.hasAttachedInterface();
+        }
+    }
+
+    @Override
+    public void destroy(LevelAccessor level, BlockPos pos, BlockState state) {
+        super.destroy(level, pos, state);
+
+        var posRel = pos.relative(state.getValue(FACING).getOpposite());
+        if (level.getBlockEntity(posRel) instanceof CrucibleBE crucible) {
+            crucible.hasAttachedInterface();
+        }
     }
 
     @Nullable

@@ -1,5 +1,7 @@
 package dev.lopyluna.slag.content.blocks.crucible;
 
+import dev.lopyluna.slag.SlagEmbers;
+import dev.lopyluna.slag.content.blocks.crucible_interface.InterfaceBE;
 import dev.lopyluna.slag.content.blocks.multiblock.FluidMultiBlockEntity;
 import dev.lopyluna.slag.register.AllBlocks;
 import net.minecraft.core.BlockPos;
@@ -24,6 +26,79 @@ public class CrucibleBE extends FluidMultiBlockEntity {
     public CrucibleBE(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
         setLazyTickRate(1);
+    }
+
+    public boolean hasAttachedInterface() {
+        var control = getControllerBE();
+        var startPos = control.getBlockPos();
+        var endPos = new BlockPos(
+                startPos.getX()+control.getWidthX(),
+                startPos.getY()+control.getHeight(),
+                startPos.getZ()+control.getWidthZ());
+
+        SlagEmbers.LOGGER.info("LOOKING FOR INTERFACES... " + startPos + "-" + endPos);
+
+        for (int y = startPos.getY(); y < endPos.getY(); y++) {
+            for (int x = startPos.getX(); x < endPos.getX(); x++) {
+                if (x == startPos.getX() || x == endPos.getX()-1) {
+                    for (int z = startPos.getZ(); z < endPos.getZ(); z++) {
+                        if (checkSidesForInterfaces(new BlockPos(x, y, z))) {
+                            control.getTankInventory().setCanAlloy(true);
+                            return true;
+                        }
+                    }
+                } else {
+                    if (checkSidesForInterfaces(new BlockPos(x, y, startPos.getZ())) ||
+                            checkSidesForInterfaces(new BlockPos(x, y, endPos.getZ()-1))) {
+                        control.getTankInventory().setCanAlloy(true);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        control.getTankInventory().setCanAlloy(false);
+        return false;
+    }
+
+    private boolean checkSidesForInterfaces(BlockPos pos) {
+        Level level = getLevel();
+        BlockState state = level.getBlockState(pos);
+        Shape shape = state.getValue(SHAPE);
+
+
+        if (shape.isCorner()) {
+            switch (shape) {
+                case NE -> {
+                    if (level.getBlockEntity(pos.relative(Direction.NORTH)) instanceof InterfaceBE ||
+                            level.getBlockEntity(pos.relative(Direction.EAST)) instanceof InterfaceBE) {
+                        return true;
+                    }
+                }
+                case NW -> {
+                    if (level.getBlockEntity(pos.relative(Direction.NORTH)) instanceof InterfaceBE ||
+                            level.getBlockEntity(pos.relative(Direction.WEST)) instanceof InterfaceBE) {
+                        return true;
+                    }
+                }
+                case SE -> {
+                    if (level.getBlockEntity(pos.relative(Direction.SOUTH)) instanceof InterfaceBE ||
+                            level.getBlockEntity(pos.relative(Direction.EAST)) instanceof InterfaceBE) {
+                        return true;
+                    }
+                }
+                case SW -> {
+                    if (level.getBlockEntity(pos.relative(Direction.SOUTH)) instanceof InterfaceBE ||
+                            level.getBlockEntity(pos.relative(Direction.WEST)) instanceof InterfaceBE) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            if (level.getBlockEntity(pos.relative(shape.toDirection())) instanceof InterfaceBE) return true;
+        }
+
+        return false;
     }
 
     @Override
