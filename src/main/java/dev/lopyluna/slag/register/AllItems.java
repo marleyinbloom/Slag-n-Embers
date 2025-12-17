@@ -131,7 +131,10 @@ public class AllItems {
             .recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, c.get(), 4)
                     .requires(Tags.Items.SANDSTONE_UNCOLORED_BLOCKS).unlockedBy("has_sandstone", has(Tags.Items.SANDSTONE_UNCOLORED_BLOCKS)).save(p, SlagEmbers.loc("crafting/" + c.getName())))
             .model((c, p) -> {
-                var castTypes = new ArrayList<>(List.of("axe_heads", "balls", "dusts", "gems", "guards", "hoe_heads", "ingots", "nuggets", "pickaxe_heads", "rods", "shovel_heads", "sword_blades"));
+                var castTypes = new ArrayList<>(
+                        List.of("axe_heads", "balls", "dusts", "gems", "guards",
+                                "hoe_heads", "ingots", "nuggets", "pickaxe_heads",
+                                "rods", "shovel_heads", "sword_blades", "sheets"));
                 for (var cast : castTypes) for (var cutout : Iterate.trueAndFalse) {
                     var loc = SlagEmbers.loc("item/" + (cutout ? "cutout/" : "") + c.getName() + "/" + cast);
                     p.withExistingParent(loc.getPath(), "item/generated").texture("layer0", loc);
@@ -144,7 +147,10 @@ public class AllItems {
             .recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, c.get(), 2)
                     .requires(ItemTags.TERRACOTTA).unlockedBy("has_terracotta", has(ItemTags.TERRACOTTA)).save(p, SlagEmbers.loc("crafting/" + c.getName())))
             .model((c, p) -> {
-                var castTypes = new ArrayList<>(List.of("axe_heads", "balls", "dusts", "gems", "guards", "hoe_heads", "ingots", "nuggets", "pickaxe_heads", "rods", "shovel_heads", "sword_blades"));
+                var castTypes = new ArrayList<>(
+                        List.of("axe_heads", "balls", "dusts", "gems", "guards",
+                                "hoe_heads", "ingots", "nuggets", "pickaxe_heads",
+                                "rods", "shovel_heads", "sword_blades", "sheets"));
                 for (var cast : castTypes) for (var cutout : Iterate.trueAndFalse) {
                     var loc = SlagEmbers.loc("item/" + (cutout ? "cutout/" : "") + c.getName() + "/" + cast);
                     p.withExistingParent(loc.getPath(), "item/generated").texture("layer0", loc);

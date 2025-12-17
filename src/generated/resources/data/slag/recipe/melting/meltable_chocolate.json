@@ -1,0 +1,10 @@
+{
+  "type": "slag:melting",
+  "ingredient": {
+    "item": "create:bar_of_chocolate"
+  },
+  "result": {
+    "amount": 250,
+    "id": "create:chocolate"
+  }
+}

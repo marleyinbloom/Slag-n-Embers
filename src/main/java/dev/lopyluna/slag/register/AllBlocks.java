@@ -145,6 +145,13 @@ public class AllBlocks {
                 create(p, "nugget", "copper", com.simibubi.create.AllItems.COPPER_NUGGET.get(), AllFluids.MOLTEN_COPPER, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
                 create(p, "nugget", "zinc", com.simibubi.create.AllItems.ZINC_NUGGET.get(), AllFluids.MOLTEN_ZINC, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
                 create(p, "nugget", "brass", com.simibubi.create.AllItems.BRASS_NUGGET.get(), AllFluids.MOLTEN_BRASS, MelterBE.NUGGET_SIZE, AllTags.CAST_NUGGETS);
+
+                create(p, "sheet", "copper", com.simibubi.create.AllItems.COPPER_SHEET.get(), AllFluids.MOLTEN_COPPER, MelterBE.INGOT_SIZE, AllTags.CAST_SHEETS);
+                create(p, "sheet", "brass", com.simibubi.create.AllItems.BRASS_SHEET.get(), AllFluids.MOLTEN_BRASS, MelterBE.INGOT_SIZE, AllTags.CAST_SHEETS);
+                create(p, "sheet", "iron", com.simibubi.create.AllItems.IRON_SHEET.get(), AllFluids.MOLTEN_IRON, MelterBE.INGOT_SIZE, AllTags.CAST_SHEETS);
+                create(p, "sheet", "gold", com.simibubi.create.AllItems.GOLDEN_SHEET.get(), AllFluids.MOLTEN_GOLD, MelterBE.INGOT_SIZE, AllTags.CAST_SHEETS);
+
+                create(p, "ingot", "chocolate", com.simibubi.create.AllItems.BAR_OF_CHOCOLATE.get(), com.simibubi.create.AllFluids.CHOCOLATE, MelterBE.SIMPLE_BLOCK_SIZE/4, AllTags.CAST_INGOTS);
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
@@ -247,9 +254,9 @@ public class AllBlocks {
                 ingotMeltable(p, "netherite", AllFluids.MOLTEN_NETHERITE.getSource(), Tags.Items.STORAGE_BLOCKS_NETHERITE, Tags.Items.INGOTS_NETHERITE, AllTags.itemC("nuggets/netherite"));
                 ingotMeltable(p, "rose_gold", AllFluids.MOLTEN_ROSE_GOLD.getSource(), AllTags.itemC("storage_blocks/rose_gold"), AllTags.itemC("ingots/rose_gold"), AllTags.itemC("nuggets/rose_gold"));
 
-                oreMeltable(p, "raw_copper", AllFluids.MOLTEN_COPPER.getSource(), Tags.Items.STORAGE_BLOCKS_RAW_COPPER, AllTags.COPPER_RAW_MATERIALS, null);
-                oreMeltable(p, "raw_iron", AllFluids.MOLTEN_IRON.getSource(), Tags.Items.STORAGE_BLOCKS_RAW_IRON, AllTags.IRON_RAW_MATERIALS, null);
-                oreMeltable(p, "raw_gold", AllFluids.MOLTEN_GOLD.getSource(), Tags.Items.STORAGE_BLOCKS_RAW_GOLD, AllTags.GOLD_RAW_MATERIALS, null);
+                oreMeltable(p, "raw_copper", AllFluids.MOLTEN_COPPER.getSource(), Tags.Items.STORAGE_BLOCKS_RAW_COPPER, AllTags.COPPER_RAW_MATERIALS, AllTags.COPPER_CRUSHED);
+                oreMeltable(p, "raw_iron", AllFluids.MOLTEN_IRON.getSource(), Tags.Items.STORAGE_BLOCKS_RAW_IRON, AllTags.IRON_RAW_MATERIALS, AllTags.IRON_CRUSHED);
+                oreMeltable(p, "raw_gold", AllFluids.MOLTEN_GOLD.getSource(), Tags.Items.STORAGE_BLOCKS_RAW_GOLD, AllTags.GOLD_RAW_MATERIALS, AllTags.GOLD_CRUSHED);
 
                 oreMeltableGem(p, "raw_diamond", AllFluids.MOLTEN_DIAMOND.getSource(), null, Tags.Items.ORES_DIAMOND, null);
 
@@ -263,7 +270,17 @@ public class AllBlocks {
                 ingotMeltable(p, "zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/zinc"), AllTags.itemC("ingots/zinc"), AllTags.itemC("nuggets/zinc"));
                 ingotMeltable(p, "brass", AllFluids.MOLTEN_BRASS.getSource(), AllTags.itemC("storage_blocks/brass"), AllTags.itemC("ingots/brass"), AllTags.itemC("nuggets/brass"));
 
-                oreMeltable(p, "raw_zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/raw_zinc"), AllTags.itemC("raw_materials/zinc"), null);
+                oreMeltable(p, "raw_zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/raw_zinc"), AllTags.itemC("raw_materials/zinc"), AllTags.ZINC_CRUSHED);
+
+                sheetMeltable(p, "iron", AllFluids.MOLTEN_IRON.getSource(), AllTags.itemC("plates/iron"));
+                sheetMeltable(p, "gold", AllFluids.MOLTEN_GOLD.getSource(), AllTags.itemC("plates/gold"));
+                sheetMeltable(p, "copper", AllFluids.MOLTEN_COPPER.getSource(), AllTags.itemC("plates/copper"));
+                sheetMeltable(p, "brass", AllFluids.MOLTEN_BRASS.getSource(), AllTags.itemC("plates/brass"));
+
+                MeltingRecipeBuilder.create(com.simibubi.create.AllFluids.CHOCOLATE.getSource(), MelterBE.SIMPLE_BLOCK_SIZE/4, com.simibubi.create.AllItems.BAR_OF_CHOCOLATE)
+                        .unlockedBy("has_meltable_chocolate", has(com.simibubi.create.AllItems.BAR_OF_CHOCOLATE))
+                        .save(p, SlagEmbers.loc("melting/meltable_chocolate"));
+
                 /*
                 MeltingRecipeBuilder.create(AllFluids.MOLTEN_AMETHYST.getSource(), MelterBE.INGOT_SIZE * 3, Items.LARGE_AMETHYST_BUD)
                         .unlockedBy("has_meltable_buds", has(Tags.Items.BUDS))

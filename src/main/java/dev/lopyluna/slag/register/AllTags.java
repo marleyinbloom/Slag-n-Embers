@@ -101,6 +101,7 @@ public class AllTags {
     public static TagKey<Item> CAST_NUGGETS = item("cast/nuggets");
     public static TagKey<Item> CAST_DUSTS = item("cast/dusts");
     public static TagKey<Item> CAST_RODS = item("cast/rods");
+    public static TagKey<Item> CAST_SHEETS = item("cast/sheets");
 
     public static TagKey<Item> MOLDS_REUSABLE = item("molds/reusable");
     public static TagKey<Item> MOLDS_SINGLE = item("molds/single");
@@ -112,17 +113,24 @@ public class AllTags {
 
     public static TagKey<Item> ZINC_RAW_MATERIALS = item("zinc_raw_materials");
 
+    public static TagKey<Item> COPPER_CRUSHED = item("copper_crushed");
+    public static TagKey<Item> IRON_CRUSHED = item("iron_crushed");
+    public static TagKey<Item> GOLD_CRUSHED = item("gold_crushed");
+    public static TagKey<Item> ZINC_CRUSHED = item("zinc_crushed");
+
     public static void genItemTags(RegistrateTagsProvider<Item> provIn) {
         TagsProvider<Item> prov = new TagsProvider<>(provIn, Item::builtInRegistryHolder);
 
         prov.tag(BLACKLISTED_HOTBAR_ITEMS).addOptional(SlagEmbers.loc("create", "wand_of_symmetry"));
 
-        prov.tag(CAST_INGOTS).addTag(Tags.Items.INGOTS).addTag(Tags.Items.BRICKS);
+        prov.tag(CAST_INGOTS).add(AllItems.BAR_OF_CHOCOLATE.asItem()).addTag(Tags.Items.INGOTS).addTag(Tags.Items.BRICKS);
         prov.tag(CAST_GEMS).add(Items.ECHO_SHARD).addTag(ItemTags.COALS).addTag(Tags.Items.GEMS).addTag(Tags.Items.NETHER_STARS);
         prov.tag(CAST_BALLS).add(Items.WIND_CHARGE).add(Items.FIRE_CHARGE).add(Items.FIREWORK_STAR).add(Items.ENDER_EYE).add(Items.CLAY_BALL).add(Items.SNOWBALL).add(Items.MAGMA_CREAM).add(Items.HEART_OF_THE_SEA).addTag(Tags.Items.SLIME_BALLS).addTag(Tags.Items.ENDER_PEARLS);
         prov.tag(CAST_NUGGETS).addTag(Tags.Items.NUGGETS);
         prov.tag(CAST_DUSTS).add(Items.BLAZE_POWDER).add(Items.SUGAR).add(Items.GUNPOWDER).addTag(Tags.Items.DUSTS);
         prov.tag(CAST_RODS).add(Items.END_ROD).add(Items.LIGHTNING_ROD).add(Items.BAMBOO).addTag(Tags.Items.RODS);
+
+        prov.tag(CAST_SHEETS).add(Items.PAPER).addOptionalTag(com.simibubi.create.AllTags.AllItemTags.PLATES.tag);
 
         prov.tag(COPPER_RAW_MATERIALS)
                 .addTag(Tags.Items.ORES_COPPER)
@@ -168,6 +176,11 @@ public class AllTags {
                 .add(AllBlocks.ZINC_ORE.asItem())
                 .add(AllBlocks.DEEPSLATE_ZINC_ORE.asItem())
                 .add(AllItems.RAW_ZINC.asItem());
+
+        prov.tag(COPPER_CRUSHED).add(AllItems.CRUSHED_COPPER.asItem());
+        prov.tag(IRON_CRUSHED).add(AllItems.CRUSHED_IRON.asItem());
+        prov.tag(GOLD_CRUSHED).add(AllItems.CRUSHED_GOLD.asItem());
+        prov.tag(ZINC_CRUSHED).add(AllItems.CRUSHED_ZINC.asItem());
     }
 
     public static TagKey<Block> block(String name) { return TagKey.create(Registries.BLOCK, SlagEmbers.loc(name)); }

@@ -130,16 +130,22 @@ public class MeltingRecipeBuilder implements RecipeBuilder {
                 .save(p, SlagEmbers.loc("melting/" + name + "_nuggets"));
     }
 
-    public static void oreMeltable(RegistrateRecipeProvider p, String name, Fluid fluid, @Nullable TagKey<Item> blocks, @Nullable TagKey<Item> material, @Nullable TagKey<Item> nuggets) {
+    public static void sheetMeltable(RegistrateRecipeProvider p, String name, Fluid fluid, @Nullable TagKey<Item> sheet) {
+        if (sheet != null) MeltingRecipeBuilder.create(fluid, MelterBE.INGOT_SIZE, sheet)
+                .unlockedBy("has_meltable_" + name, has(sheet))
+                .save(p, SlagEmbers.loc("melting/" + name + "_sheets"));
+    }
+
+    public static void oreMeltable(RegistrateRecipeProvider p, String name, Fluid fluid, @Nullable TagKey<Item> blocks, @Nullable TagKey<Item> material, @Nullable TagKey<Item> crushed) {
         if (blocks != null) MeltingRecipeBuilder.create(fluid, MelterBE.BLOCK_SIZE + MelterBE.INGOT_SIZE + MelterBE.INGOT_SIZE + MelterBE.INGOT_SIZE, blocks)
                 .unlockedBy("has_meltable_" + name, has(blocks))
                 .save(p, SlagEmbers.loc("melting/" + name + "_blocks"));
         if (material != null) MeltingRecipeBuilder.create(fluid, MelterBE.INGOT_SIZE + MelterBE.NUGGET_SIZE + MelterBE.NUGGET_SIZE + MelterBE.NUGGET_SIZE, material)
                 .unlockedBy("has_meltable_" + name, has(material))
                 .save(p, SlagEmbers.loc("melting/" + name + "_materials"));
-        if (nuggets != null) MeltingRecipeBuilder.create(fluid, MelterBE.NUGGET_SIZE, nuggets)
-                .unlockedBy("has_meltable_" + name, has(nuggets))
-                .save(p, SlagEmbers.loc("melting/" + name + "_nuggets"));
+        if (crushed != null) MeltingRecipeBuilder.create(fluid, MelterBE.INGOT_SIZE*2, crushed)
+                .unlockedBy("has_meltable_" + name, has(crushed))
+                .save(p, SlagEmbers.loc("melting/" + name + "_crushed_ores"));
     }
 
     public static void ingotMeltable(RegistrateRecipeProvider p, String name, Fluid fluid, @Nullable TagKey<Item> blocks, @Nullable TagKey<Item> ingots, @Nullable TagKey<Item> nuggets) {

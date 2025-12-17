@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:paper",
+    {
+      "id": "#c:plates",
+      "required": false
+    }
+  ]
+}

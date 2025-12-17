@@ -1,0 +1,12 @@
+{
+  "type": "slag:table_casting",
+  "cast": "slag:cast/ingots",
+  "ingredient": {
+    "amount": 250,
+    "id": "create:chocolate"
+  },
+  "result": {
+    "count": 1,
+    "id": "create:bar_of_chocolate"
+  }
+}

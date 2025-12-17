@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_meltable_chocolate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "create:bar_of_chocolate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "slag:melting/meltable_chocolate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_meltable_chocolate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "slag:melting/meltable_chocolate"
+    ]
+  }
+}
