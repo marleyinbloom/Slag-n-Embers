@@ -6,7 +6,6 @@ import dev.lopyluna.slag.content.blocks.crucible.CrucibleRenderer;
 import dev.lopyluna.slag.content.blocks.crucible_interface.InterfaceRenderer;
 import dev.lopyluna.slag.content.blocks.crucible_interface.client.InterfaceScreen;
 import dev.lopyluna.slag.content.blocks.drain.DrainRenderer;
-import dev.lopyluna.slag.content.blocks.forge.client.ForgeScreen;
 import dev.lopyluna.slag.content.blocks.melter.MelterRenderer;
 import dev.lopyluna.slag.content.blocks.melter.client.MelterScreen;
 import dev.lopyluna.slag.content.blocks.table.TableRenderer;
@@ -33,7 +32,6 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(AllMenuTypes.FORGE.get(), ForgeScreen::new);
         event.register(AllMenuTypes.INTERFACE.get(), InterfaceScreen::new);
         event.register(AllMenuTypes.MELTER.get(), MelterScreen::new);
     }

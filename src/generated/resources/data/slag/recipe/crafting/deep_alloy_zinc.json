@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "slag:deep_alloy_stones"
+    },
+    "N": {
+      "tag": "c:nuggets/zinc"
+    }
+  },
+  "pattern": [
+    "DN",
+    "ND"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:deep_alloy"
+  }
+}

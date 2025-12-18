@@ -7,7 +7,6 @@ import dev.lopyluna.slag.content.blocks.basin.BasinBE;
 import dev.lopyluna.slag.content.blocks.crucible.CrucibleBE;
 import dev.lopyluna.slag.content.blocks.crucible_interface.InterfaceBE;
 import dev.lopyluna.slag.content.blocks.drain.DrainBE;
-import dev.lopyluna.slag.content.blocks.forge.ForgeBE;
 import dev.lopyluna.slag.content.blocks.melter.MelterBE;
 import dev.lopyluna.slag.content.blocks.table.TableBE;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -17,7 +16,6 @@ import static dev.lopyluna.slag.SlagEmbers.REG;
 @SuppressWarnings("unused")
 public class AllBETypes {
 
-    public static BlockEntityEntry<ForgeBE> FORGE = simpleBE("brick_forge", AllBlocks.FORGE, ForgeBE::new);
     public static BlockEntityEntry<InterfaceBE> INTERFACE = simpleBE("crucible_interface", AllBlocks.INTERFACE, InterfaceBE::new);
     public static BlockEntityEntry<CrucibleBE> CRUCIBLE = simpleBE("crucible", AllBlocks.CRUCIBLE, CrucibleBE::new);
     public static BlockEntityEntry<TableBE> TABLE = simpleBE("table", AllBlocks.TABLE, TableBE::new);

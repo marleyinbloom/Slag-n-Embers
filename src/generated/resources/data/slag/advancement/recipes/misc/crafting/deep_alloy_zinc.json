@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_red_terracotta": {
+    "has_deepslate": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:red_terracotta"
+            "items": "#slag:deep_alloy_stones"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "slag:double_smelting/red_glazed_terracotta"
+        "recipe": "slag:crafting/deep_alloy_zinc"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_red_terracotta"
+      "has_deepslate"
     ]
   ],
   "rewards": {
     "recipes": [
-      "slag:double_smelting/red_glazed_terracotta"
+      "slag:crafting/deep_alloy_zinc"
     ]
   }
 }

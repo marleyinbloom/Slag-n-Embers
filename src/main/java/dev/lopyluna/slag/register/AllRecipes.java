@@ -4,8 +4,6 @@ import dev.lopyluna.slag.content.blocks.basin.BasinCastingRecipe;
 import dev.lopyluna.slag.content.blocks.basin.BasinCastingRecipeSer;
 import dev.lopyluna.slag.content.blocks.crucible.AlloyingRecipe;
 import dev.lopyluna.slag.content.blocks.crucible.AlloyingRecipeSer;
-import dev.lopyluna.slag.content.blocks.forge.DoubleSmeltingRecipe;
-import dev.lopyluna.slag.content.blocks.forge.DoubleSmeltingRecipeSer;
 import dev.lopyluna.slag.content.blocks.melter.MeltingRecipe;
 import dev.lopyluna.slag.content.blocks.melter.MeltingRecipeSer;
 import dev.lopyluna.slag.content.blocks.table.TableCastingRecipe;
@@ -17,8 +15,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import static dev.lopyluna.slag.SlagEmbers.REGISTER;
 
 public class AllRecipes {
-    public static final DeferredHolder<RecipeSerializer<?>, DoubleSmeltingRecipeSer> DOUBLE_SMELTING_SER = REGISTER.recipeSer()
-            .register("double_smelting", () -> new DoubleSmeltingRecipeSer(DoubleSmeltingRecipe::new, 200));
     public static final DeferredHolder<RecipeSerializer<?>, AlloyingRecipeSer> ALLOYING_SER = REGISTER.recipeSer()
             .register("alloying", () -> new AlloyingRecipeSer(AlloyingRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, MeltingRecipeSer> MELTING_SER = REGISTER.recipeSer()
@@ -29,8 +25,6 @@ public class AllRecipes {
             .register("table_casting", () -> new TableCastingRecipeSer(TableCastingRecipe::new));
 
 
-    public static final DeferredHolder<RecipeType<?>, DoubleSmeltingRecipe.Type> DOUBLE_SMELTING = REGISTER.recipes()
-            .register("double_smelting", () -> DoubleSmeltingRecipe.Type.INSTANCE);
     public static final DeferredHolder<RecipeType<?>, AlloyingRecipe.Type> ALLOYING = REGISTER.recipes()
             .register("alloying", () -> AlloyingRecipe.Type.INSTANCE);
     public static final DeferredHolder<RecipeType<?>, MeltingRecipe.Type> MELTING = REGISTER.recipes()

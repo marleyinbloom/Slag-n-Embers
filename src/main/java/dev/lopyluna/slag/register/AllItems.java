@@ -3,8 +3,6 @@ package dev.lopyluna.slag.register;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.lopyluna.slag.SlagEmbers;
 import dev.lopyluna.slag.content.blocks.melter.MelterBE;
-import dev.lopyluna.slag.content.datagen.AlloyingRecipeBuilder;
-import dev.lopyluna.slag.content.datagen.DualCookingRecipeBuilder;
 import dev.lopyluna.slag.content.datagen.MeltingRecipeBuilder;
 import dev.lopyluna.slag.content.items.MaterialType;
 import dev.lopyluna.slag.content.items.dynamic_mold.DynamicMoldItem;
@@ -156,9 +154,6 @@ public class AllItems {
     public static final ItemEntry<Item> ROSE_GOLD_INGOT = REG.item("rose_gold_ingot", Item::new)
             .recipe((c, p) -> {
                 compressible9x(c, p, Ingredient.of(AllTags.itemC("ingots/rose_gold")), Ingredient.of(AllTags.itemC("storage_blocks/rose_gold")), c.get(), AllBlocks.ROSE_GOLD_BLOCK);
-                DualCookingRecipeBuilder.create(RecipeCategory.MISC, c.get(), 2, AllTags.itemC("ingots/copper"), AllTags.itemC("ingots/gold"), 1.4f)
-                        .unlockedBy("has_copper", has(AllTags.itemC("ingots/copper")))
-                        .save(p, SlagEmbers.loc("double_smelting/" + c.getName()));
             })
             .tag(AllTags.itemC("ingots/rose_gold"), AllTags.itemC("ingots"), ItemTags.BEACON_PAYMENT_ITEMS)
             .register();
@@ -169,14 +164,20 @@ public class AllItems {
             .tag(AllTags.itemC("nuggets/rose_gold"), AllTags.itemC("nuggets"))
             .register();
 
-
     public static final ItemEntry<Item> DEEP_ALLOY = REG.item("deep_alloy", Item::new)
             .recipe((c, p) -> {
-                compressible9x(c, p, Ingredient.of(AllTags.itemC("ingots/deep_alloy")), Ingredient.of(AllTags.itemC("storage_blocks/deep_alloy")), c.get(), AllBlocks.DEEP_ALLOY_BLOCK);
-                DualCookingRecipeBuilder.create(RecipeCategory.MISC, c.get(), AllTags.itemC("ingots/iron"), Items.POLISHED_DEEPSLATE, 1.4f)
-                        .unlockedBy("has_iron", has(AllTags.itemC("ingots/iron")))
-                        .save(p, SlagEmbers.loc("double_smelting/" + c.getName()));
-            }).tag(AllTags.itemC("ingots/deep_alloy"), AllTags.itemC("ingots"), ItemTags.BEACON_PAYMENT_ITEMS)
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                        .pattern("DN")
+                        .pattern("ND")
+                        .define('D', AllTags.DEEP_ALLOY_STONES).define('N', AllTags.itemC("nuggets/iron"))
+                        .unlockedBy("has_deepslate", has(AllTags.DEEP_ALLOY_STONES)).save(p, SlagEmbers.loc("crafting/" + c.getName() + "_ironr"));
+
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                        .pattern("DN")
+                        .pattern("ND")
+                        .define('D', AllTags.DEEP_ALLOY_STONES).define('N', AllTags.itemC("nuggets/zinc"))
+                        .unlockedBy("has_deepslate", has(AllTags.DEEP_ALLOY_STONES)).save(p, SlagEmbers.loc("crafting/" + c.getName() + "_zinc"));
+            }).tag(AllTags.itemC("ingots/deep_alloy"), AllTags.itemC("ingots"))
             .register();
 
     public static final List<ItemEntry<ModularToolPartItem>> TOOL_PARTS = new ArrayList<>();

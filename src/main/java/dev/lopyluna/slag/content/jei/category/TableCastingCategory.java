@@ -1,15 +1,11 @@
 package dev.lopyluna.slag.content.jei.category;
 
 import dev.lopyluna.slag.SlagEmbers;
-import dev.lopyluna.slag.content.AllUtils;
-import dev.lopyluna.slag.content.blocks.melter.MeltingRecipe;
 import dev.lopyluna.slag.content.blocks.table.TableCastingRecipe;
-import dev.lopyluna.slag.content.items.dynamic_mold.DynamicMoldItem;
 import dev.lopyluna.slag.content.jei.EmbersRecipesJEI;
 import dev.lopyluna.slag.register.AllBlocks;
 import dev.lopyluna.slag.register.AllDataComponents;
 import dev.lopyluna.slag.register.AllItems;
-import dev.lopyluna.slag.register.AllTags;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.widgets.IRecipeExtrasBuilder;
@@ -17,14 +13,11 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IModIdHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.AbstractRecipeCategory;
 import mezz.jei.common.Internal;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -57,7 +50,7 @@ public class TableCastingCategory extends AbstractRecipeCategory<RecipeHolder<Ta
     }
 
 
-    @SuppressWarnings("removal")
+    @SuppressWarnings({"removal", "depreciation"})
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<TableCastingRecipe> holder, IFocusGroup focuses) {
         var recipe = holder.value();

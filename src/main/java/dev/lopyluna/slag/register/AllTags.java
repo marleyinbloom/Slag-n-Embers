@@ -81,6 +81,9 @@ public class AllTags {
                 .addTag(BlockTags.CAMPFIRES)
         ;
     }
+
+    public static TagKey<Item> DEEP_ALLOY_STONES = item("deep_alloy_stones");
+
     public static TagKey<Item> COPPER_BLOCKS = item("copper_blocks");
     public static TagKey<Item> QUARTZ_BLOCKS = item("quartz_blocks");
     public static TagKey<Item> AMETHYST_BLOCKS = item("amethyst_blocks");
@@ -123,6 +126,15 @@ public class AllTags {
         TagsProvider<Item> prov = new TagsProvider<>(provIn, Item::builtInRegistryHolder);
 
         prov.tag(BLACKLISTED_HOTBAR_ITEMS).addOptional(SlagEmbers.loc("create", "wand_of_symmetry"));
+
+        prov.tag(DEEP_ALLOY_STONES)
+                .add(Items.DEEPSLATE)
+                .add(Items.COBBLED_DEEPSLATE)
+                .add(Items.POLISHED_DEEPSLATE)
+                .add(Items.DEEPSLATE_TILES)
+                .add(Items.CRACKED_DEEPSLATE_TILES)
+                .add(Items.DEEPSLATE_BRICKS)
+                .add(Items.CRACKED_DEEPSLATE_BRICKS);
 
         prov.tag(CAST_INGOTS).add(AllItems.BAR_OF_CHOCOLATE.asItem()).addTag(Tags.Items.INGOTS).addTag(Tags.Items.BRICKS);
         prov.tag(CAST_GEMS).add(Items.ECHO_SHARD).addTag(ItemTags.COALS).addTag(Tags.Items.GEMS).addTag(Tags.Items.NETHER_STARS);
