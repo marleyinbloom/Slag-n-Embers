@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-17T21:51:43.216033704	Registrate Provider for slag [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-12-17T22:30:46.660153089	Registrate Provider for slag [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 84dbc3390ebdc7b0a227f3e7d472443f25a203b5 assets/slag/blockstates/basin.json
 337be80708574f8549f239b234ba61c8d54326b1 assets/slag/blockstates/crucible.json
 92a02774ee9cd6ad05dd15c3045ac8b2c844bf3a assets/slag/blockstates/crucible_interface.json
@@ -731,7 +731,7 @@ c99568b275ec51f6a156a081f4c8f5abd4ce467e data/slag/advancement/recipes/misc/craf
 e9fa79149c5ef0e68c5b182991d2c790a299abf3 data/slag/advancement/recipes/misc/crafting/deep_alloy_brick_slab.json
 f8b4031f811ad138f89f6fb76b2c30bd96484009 data/slag/advancement/recipes/misc/crafting/deep_alloy_brick_stairs.json
 b06e1b8b32d1acb776b19b6e7dc959e5543ae4c8 data/slag/advancement/recipes/misc/crafting/deep_alloy_bricks.json
-5f3c70e21602999710e95ca0e82e59f2dbae76c0 data/slag/advancement/recipes/misc/crafting/deep_alloy_iron.json
+a776e064732e953763aff792f1ade0308d08c3fa data/slag/advancement/recipes/misc/crafting/deep_alloy_ironr.json
 ca5cff324c877368ab0efb8bc1b6fcf2743edcdf data/slag/advancement/recipes/misc/crafting/deep_alloy_zinc.json
 03e35f48dc560697acd47a2218d026b488d6071e data/slag/advancement/recipes/misc/crafting/drain.json
 ca3f76f694f517c39b6111fed2d7306c121c0b75 data/slag/advancement/recipes/misc/crafting/ingot_from_block_rose_gold_ingot.json
@@ -1018,12 +1018,12 @@ f8b7d7ce8fe2cbd015e34e98966c48ef5421c98c data/slag/recipe/casting/table/zinc_axe
 5af926712823ae663e6131abcdd6926b9d5748c1 data/slag/recipe/casting/table/zinc_shovel_head.json
 96f13b78d25db659662a00491afb58fb007c51e7 data/slag/recipe/casting/table/zinc_sword_blade.json
 5df065ef466be77d8b306afd8af8b209d3288292 data/slag/recipe/crafting/basin.json
-308aa368728ddb1ad61f189971f66b273858a2c7 data/slag/recipe/crafting/crucible.json
+c4be1cb24d0b8a470e21f73da32811ad0a585cfa data/slag/recipe/crafting/crucible.json
 641005c9b5bf0b02fc8739cfc176febdf930221d data/slag/recipe/crafting/crucible_interface.json
 2b2bf61a3e082a638d4151259a3dc9b194aab3d9 data/slag/recipe/crafting/deep_alloy_brick_slab.json
 2fdfcafa9c161d41d8810328c7dde9bfd079bc8b data/slag/recipe/crafting/deep_alloy_brick_stairs.json
 d118b35735aa47333bf69a34a12b6d8f7c8b6611 data/slag/recipe/crafting/deep_alloy_bricks.json
-6245cf73a53a425f0aa0ec7d03bf68cdd8caee8c data/slag/recipe/crafting/deep_alloy_iron.json
+6245cf73a53a425f0aa0ec7d03bf68cdd8caee8c data/slag/recipe/crafting/deep_alloy_ironr.json
 5ffd68eed8bc1449646ffa6166ef712bc0d76356 data/slag/recipe/crafting/deep_alloy_zinc.json
 444831c746a1ae870a2c1a7f117d327d1d67c921 data/slag/recipe/crafting/drain.json
 873733b7ed4d90a653879dfc1e7a4f2f641bceef data/slag/recipe/crafting/ingot_from_block_rose_gold_ingot.json

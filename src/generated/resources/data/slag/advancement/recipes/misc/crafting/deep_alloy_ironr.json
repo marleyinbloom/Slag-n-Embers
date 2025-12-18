@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "slag:crafting/deep_alloy_iron"
+        "recipe": "slag:crafting/deep_alloy_ironr"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "slag:crafting/deep_alloy_iron"
+      "slag:crafting/deep_alloy_ironr"
     ]
   }
 }

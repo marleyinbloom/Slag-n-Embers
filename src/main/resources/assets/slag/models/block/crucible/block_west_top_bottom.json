@@ -7,6 +7,7 @@
 		"1": "slag:block/crucible_side",
 		"2": "slag:block/crucible_top",
 		"3": "slag:block/crucible_inside",
+        "4": "slag:block/crucible_top_copper",
 		"particle": "block/anvil"
 	},
 	"elements": [
@@ -16,7 +17,7 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 2, 8]},
 			"faces": {
 				"west": {"uv": [8, 12, 12, 15.5], "texture": "#1"},
-				"up": {"uv": [4, 4, 8, 8], "texture": "#2"},
+				"up": {"uv": [4, 4, 8, 8], "texture": "#4"},
 				"down": {"uv": [4, 4, 8, 8], "texture": "#3"}
 			}
 		},

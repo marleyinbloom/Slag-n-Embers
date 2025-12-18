@@ -5,7 +5,8 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"1": "slag:block/crucible_side",
-		"2": "slag:block/crucible_top",
+		"2": "slag:block/crucible_top_copper",
+        "3": "slag:block/crucible_top",
 		"particle": "block/anvil"
 	},
 	"elements": [
@@ -31,7 +32,7 @@
 			"to": [16, 0, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 12, 8]},
 			"faces": {
-				"down": {"uv": [8, 0, 12, 4], "texture": "#2"}
+				"down": {"uv": [8, 0, 12, 4], "texture": "#3"}
 			}
 		}
 	]

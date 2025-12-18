@@ -82,10 +82,11 @@ public class AllBlocks {
             })).properties(p -> p.sound(AllSoundTypes.CRUCIBLE).noOcclusion().mapColor(MapColor.COLOR_GRAY).requiresCorrectToolForDrops())
             .recipe((c, p) -> {
                 ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 4)
-                        .pattern("D D")
+                        .pattern("C C")
                         .pattern("D D")
                         .pattern("DBD")
                         .define('D', AllTags.itemC("ingots/deep_alloy")).define('B', AllTags.itemC("storage_blocks/deep_alloy"))
+                        .define('C', AllTags.itemC("ingots/copper"))
                         .unlockedBy("has_deep_alloy", has(AllTags.itemC("ingots/deep_alloy"))).save(p, SlagEmbers.loc("crafting/" + c.getName()));
 
                 AlloyingRecipeBuilder.create(AllFluids.MOLTEN_ROSE_GOLD.getSource(), MelterBE.NUGGET_SIZE * 2, fluid(AllFluids.MOLTEN_GOLD.getSource(), MelterBE.NUGGET_SIZE), fluid(AllFluids.MOLTEN_COPPER.getSource(), MelterBE.NUGGET_SIZE))

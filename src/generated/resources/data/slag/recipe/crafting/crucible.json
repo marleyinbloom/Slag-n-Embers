@@ -5,12 +5,15 @@
     "B": {
       "tag": "c:storage_blocks/deep_alloy"
     },
+    "C": {
+      "tag": "c:ingots/copper"
+    },
     "D": {
       "tag": "c:ingots/deep_alloy"
     }
   },
   "pattern": [
-    "D D",
+    "C C",
     "D D",
     "DBD"
   ],
