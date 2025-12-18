@@ -11,8 +11,7 @@
   },
   "pattern": [
     "MM",
-    "MR",
-    " R"
+    "MR"
   ],
   "result": {
     "count": 1,

@@ -1,0 +1,12 @@
+{
+  "type": "slag:table_casting",
+  "cast": "slag:cast/hammer_heads",
+  "ingredient": {
+    "amount": 360,
+    "id": "slag:molten_brass"
+  },
+  "result": {
+    "count": 1,
+    "id": "slag:brass_hammer_head"
+  }
+}

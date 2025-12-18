@@ -1,0 +1,12 @@
+{
+  "type": "slag:table_casting",
+  "cast": "slag:cast/hammer_heads",
+  "ingredient": {
+    "amount": 360,
+    "id": "slag:molten_gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "slag:golden_hammer_head"
+  }
+}

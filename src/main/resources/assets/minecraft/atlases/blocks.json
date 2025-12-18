@@ -90,6 +90,7 @@
         "slag:item/metal/shovel_head",
         "slag:item/metal/sword_blade",
         "slag:item/metal/guard",
+        "slag:item/metal/hammer_head",
 
         "slag:item/built/metal/axe_head",
         "slag:item/built/metal/hoe_head",
@@ -146,6 +147,7 @@
         "slag:item/soft/shovel_head",
         "slag:item/soft/sword_blade",
         "slag:item/soft/guard",
+        "slag:item/soft/hammer_head",
 
         "slag:item/built/soft/axe_head",
         "slag:item/built/soft/hoe_head",
@@ -202,6 +204,7 @@
         "slag:item/shiny/shovel_head",
         "slag:item/shiny/sword_blade",
         "slag:item/shiny/guard",
+        "slag:item/shiny/hammer_head",
 
         "slag:item/built/shiny/axe_head",
         "slag:item/built/shiny/hoe_head",
@@ -263,6 +266,7 @@
         "slag:item/shovel_head",
         "slag:item/sword_blade",
         "slag:item/guard",
+        "slag:item/hammer_head",
 
         "slag:item/built/axe_head",
         "slag:item/built/hoe_head",

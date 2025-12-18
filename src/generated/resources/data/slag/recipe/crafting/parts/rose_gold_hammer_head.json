@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "tag": "c:ingots/rose_gold"
+    },
+    "R": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "MRM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:rose_gold_hammer_head"
+  }
+}

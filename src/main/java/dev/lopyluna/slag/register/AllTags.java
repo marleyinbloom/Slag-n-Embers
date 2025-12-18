@@ -94,6 +94,7 @@ public class AllTags {
     public static TagKey<Item> CAST_HOE_HEADS = item("cast/hoe_heads");
     public static TagKey<Item> CAST_SWORD_BLADES = item("cast/sword_blades");
     public static TagKey<Item> CAST_GUARDS = item("cast/guards");
+    public static TagKey<Item> CAST_HAMMER_HEAD = item("cast/hammer_heads");
 
     public static TagKey<Item> CAST_INGOTS = item("cast/ingots");
     public static TagKey<Item> CAST_GEMS = item("cast/gems");

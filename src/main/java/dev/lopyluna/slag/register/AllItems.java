@@ -3,6 +3,7 @@ package dev.lopyluna.slag.register;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.lopyluna.slag.SlagEmbers;
 import dev.lopyluna.slag.content.blocks.melter.MelterBE;
+import dev.lopyluna.slag.content.datagen.AlloyingRecipeBuilder;
 import dev.lopyluna.slag.content.datagen.DualCookingRecipeBuilder;
 import dev.lopyluna.slag.content.datagen.MeltingRecipeBuilder;
 import dev.lopyluna.slag.content.items.MaterialType;
@@ -30,6 +31,7 @@ import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.netheriteSmithing;
 import static dev.lopyluna.slag.SlagEmbers.REG;
 import static dev.lopyluna.slag.content.AllUtils.compressible9x;
+import static dev.lopyluna.slag.content.datagen.AlloyingRecipeBuilder.fluid;
 import static dev.lopyluna.slag.register.AllCreativeTabs.findPart;
 
 @SuppressWarnings("unused")
@@ -67,25 +69,14 @@ public class AllItems {
             .setDuraMod(1)
             .setSpeedMod(2.4f)
             .register();
+    public static final ToolPartType HAMMER_HEAD = new ToolPartType.Builder("hammer_head")
+            .setSharpMod(1f)
+            .setDuraMod(1)
+            .setSpeedMod(2.4f)
+            .register();
 
     public static final List<MaterialType> MATERIAL_TYPES = AllMaterials.MATERIAL_TYPES;
 
-    /*
-    public static final MaterialType GLOWSTONE = AllMaterials.GLOWSTONE;
-    public static final MaterialType REDSTONE = AllMaterials.REDSTONE;
-    public static final MaterialType LAPIS = AllMaterials.LAPIS;
-    public static final MaterialType AMETHYST = AllMaterials.AMETHYST;
-    public static final MaterialType QUARTZ = AllMaterials.QUARTZ;
-    public static final MaterialType EMERALD = AllMaterials.EMERALD;
-    public static final MaterialType PRISMARINE = AllMaterials.PRISMARINE;
-    public static final MaterialType BLUE_ICE = AllMaterials.BLUE_ICE;
-    public static final MaterialType OBSIDIAN = AllMaterials.OBSIDIAN;
-    public static final MaterialType ECHO = AllMaterials.ECHO;
-    public static final MaterialType POPPED_CHORUS = AllMaterials.POPPED_CHORUS;
-    public static final MaterialType NAUTILUS = AllMaterials.NAUTILUS;
-    public static final MaterialType BONE = AllMaterials.BONE;
-    public static final MaterialType FLINT = AllMaterials.FLINT;
-     */
     public static final MaterialType WOOD = AllMaterials.WOOD;
     public static final MaterialType STONE = AllMaterials.STONE;
     public static final MaterialType COPPER = AllMaterials.COPPER;
@@ -101,13 +92,13 @@ public class AllItems {
     public static final MaterialType BRASS = AllMaterials.BRASS;
 
     static {
-
         TOOL_PART_TYPES.add(AXE_HEAD);
         TOOL_PART_TYPES.add(PICKAXE_HEAD);
         TOOL_PART_TYPES.add(SHOVEL_HEAD);
         TOOL_PART_TYPES.add(HOE_HEAD);
         TOOL_PART_TYPES.add(SWORD_BLADE);
         TOOL_PART_TYPES.add(GUARD);
+        TOOL_PART_TYPES.add(HAMMER_HEAD);
     }
 
     public static final ItemEntry<BakedModularToolItem> BAKED_TOOL = REG.item("baked_tool", BakedModularToolItem::new)
@@ -134,7 +125,8 @@ public class AllItems {
                 var castTypes = new ArrayList<>(
                         List.of("axe_heads", "balls", "dusts", "gems", "guards",
                                 "hoe_heads", "ingots", "nuggets", "pickaxe_heads",
-                                "rods", "shovel_heads", "sword_blades", "sheets"));
+                                "rods", "shovel_heads", "sword_blades", "sheets",
+                                "hammer_heads"));
                 for (var cast : castTypes) for (var cutout : Iterate.trueAndFalse) {
                     var loc = SlagEmbers.loc("item/" + (cutout ? "cutout/" : "") + c.getName() + "/" + cast);
                     p.withExistingParent(loc.getPath(), "item/generated").texture("layer0", loc);
@@ -150,7 +142,8 @@ public class AllItems {
                 var castTypes = new ArrayList<>(
                         List.of("axe_heads", "balls", "dusts", "gems", "guards",
                                 "hoe_heads", "ingots", "nuggets", "pickaxe_heads",
-                                "rods", "shovel_heads", "sword_blades", "sheets"));
+                                "rods", "shovel_heads", "sword_blades", "sheets",
+                                "hammer_heads"));
                 for (var cast : castTypes) for (var cutout : Iterate.trueAndFalse) {
                     var loc = SlagEmbers.loc("item/" + (cutout ? "cutout/" : "") + c.getName() + "/" + cast);
                     p.withExistingParent(loc.getPath(), "item/generated").texture("layer0", loc);
@@ -196,6 +189,7 @@ public class AllItems {
             registerPart(material, part);
             registerPart(material, part);
             registerPart(material, part);
+            registerPart(material, part);
         }
     }
 
@@ -220,7 +214,7 @@ public class AllItems {
                         if (!stack.isEmpty()) netheriteSmithing(p, stack.getItem(), RecipeCategory.TOOLS, c.get());
                     } else buildPattern(ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, c.get()), part)
                             .define('M', material.repairMaterials.get())
-                            .define('R', Items.PAPER)
+                            .define('R', Items.CLAY_BALL)
                             .unlockedBy("has_blueprint", has(MODULAR_TOOL))
                             .save(p, SlagEmbers.loc("crafting/parts/" + c.getName()));
 
@@ -253,12 +247,14 @@ public class AllItems {
             case "hoe_head" -> AllTags.CAST_HOE_HEADS;
             case "sword_blade" -> AllTags.CAST_SWORD_BLADES;
             case "guard" -> AllTags.CAST_GUARDS;
+            case "hammer_head" -> AllTags.CAST_HAMMER_HEAD;
             default -> null;
         };
     }
 
     public static int getSize(ToolPartType part) {
         return switch (part.id) {
+            case "hammer_head" -> 5;
             case "axe_head", "pickaxe_head" -> 3;
             case "sword_blade", "hoe_head" -> 2;
             case "guard", "shovel_head" -> 1;
@@ -270,19 +266,15 @@ public class AllItems {
         return switch (part.id) {
             case "axe_head" -> value
                     .pattern("MM")
-                    .pattern("MR")
-                    .pattern(" R");
+                    .pattern("MR");
             case "pickaxe_head" -> value
                     .pattern("MMM")
-                    .pattern(" R ")
                     .pattern(" R ");
             case "shovel_head" -> value
                     .pattern("M")
-                    .pattern("R")
                     .pattern("R");
             case "hoe_head" -> value
                     .pattern("MM")
-                    .pattern(" R")
                     .pattern(" R");
             case "sword_blade" -> value
                     .pattern("M")
@@ -290,6 +282,9 @@ public class AllItems {
                     .pattern("R");
             case "guard" -> value
                     .pattern("RMR");
+            case "hammer_head" -> value
+                    .pattern("MMM")
+                    .pattern("MRM");
             default -> value;
         };
     }

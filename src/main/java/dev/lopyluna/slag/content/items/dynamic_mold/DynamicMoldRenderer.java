@@ -51,7 +51,8 @@ public class DynamicMoldRenderer extends CustomRenderedItemModelRenderer {
         var castTypes = new ArrayList<>(
                 List.of("axe_heads", "balls", "dusts", "gems", "guards",
                         "hoe_heads", "ingots", "nuggets", "pickaxe_heads",
-                        "rods", "shovel_heads", "sword_blades", "sheets"));
+                        "rods", "shovel_heads", "sword_blades", "sheets",
+                        "hammer_heads"));
         for (var entry : BuiltInRegistries.ITEM.entrySet()) {
             var item = entry.getValue();
             if (!(item instanceof DynamicMoldItem)) continue;

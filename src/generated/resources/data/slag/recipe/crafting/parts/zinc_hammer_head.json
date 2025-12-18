@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "item": "create:zinc_ingot"
+    },
+    "R": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "MRM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:zinc_hammer_head"
+  }
+}
