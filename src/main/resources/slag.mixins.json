@@ -6,7 +6,9 @@
   "mixins": [
     "AxeItemAccessor",
     "FurnaceResultSlotAccessor",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "ToolHooks",
+    "WeaponHooks"
   ],
   "client": [
     "LevelRendererAccessor"

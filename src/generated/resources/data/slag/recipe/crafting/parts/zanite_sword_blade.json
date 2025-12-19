@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "tag": "aether:zanite_repairing"
+    },
+    "R": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "M",
+    "M",
+    "R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:zanite_sword_blade"
+  }
+}

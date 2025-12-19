@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "tag": "aether:gravitite_repairing"
+    },
+    "R": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "RMR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:gravitite_guard"
+  }
+}

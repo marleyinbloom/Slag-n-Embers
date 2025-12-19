@@ -5,6 +5,7 @@ import dev.lopyluna.slag.SlagEmbers;
 import dev.lopyluna.slag.client.render.CustomRenderedItemModel;
 import dev.lopyluna.slag.client.render.CustomRenderedItemModelRenderer;
 import dev.lopyluna.slag.client.render.PartialItemModelRenderer;
+import dev.lopyluna.slag.register.AllDataComponents;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -43,6 +44,7 @@ public class ModularToolRenderer extends CustomRenderedItemModelRenderer {
 
         var parts = tool.getParts(stack);
         var fireImmune = stack.has(DataComponents.FIRE_RESISTANT);
+        var aetherTool = stack.has(AllDataComponents.AETHER_EFFICIENT);
 
         var shaper = itemRenderer.getItemModelShaper();
         var manager = shaper.getModelManager();
@@ -70,7 +72,11 @@ public class ModularToolRenderer extends CustomRenderedItemModelRenderer {
             var loc = BuiltInRegistries.ITEM.getKey(pStack.getItem());
             if (bool) {
                 var builtModel = pStack.is(Items.STICK) ?
-                        manager.getModel(ModelResourceLocation.standalone(SlagEmbers.loc(fireImmune ? "item/handle_fire_proof_" + mixture : "item/handle_" + mixture))) : pureMixture.isEmpty() ?
+                        manager.getModel(ModelResourceLocation.standalone(SlagEmbers.loc(
+                                fireImmune ?
+                                        ("item/handle_fire_proof_" + mixture) :
+                                        (aetherTool ? "item/handle_aether_" + mixture : "item/handle_" + mixture)
+                                ))) : pureMixture.isEmpty() ?
                         manager.getModel(ModelResourceLocation.standalone(SlagEmbers.loc(loc.getNamespace(), "item/" + loc.getPath() + "_built"))) :
                         manager.getModel(ModelResourceLocation.standalone(SlagEmbers.loc(loc.getNamespace(), "item/" + loc.getPath() + "_" + pureMixture)));
 
@@ -111,6 +117,7 @@ public class ModularToolRenderer extends CustomRenderedItemModelRenderer {
         }
         for (var mixture : List.of("pickaxe", "axe", "shovel", "hoe", "sword", "mattock", "prybar", "graip", "mallet", "hammer", "scythe", "maul", "paxel")) {
             e.register(ModelResourceLocation.standalone(SlagEmbers.loc("item/handle_fire_proof_" + mixture)));
+            e.register(ModelResourceLocation.standalone(SlagEmbers.loc("item/handle_aether_" + mixture)));
             e.register(ModelResourceLocation.standalone(SlagEmbers.loc("item/handle_" + mixture)));
         }
     }

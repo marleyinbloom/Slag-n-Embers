@@ -76,6 +76,11 @@ public class AllFluids {
     public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_BRASS =
             newMoltenFluid("Brass", () -> 0xA2A892).register();
 
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_ZANITE =
+            newMoltenFluid("Zanite", () -> 0xA06FE9).register();
+    public static final FluidEntry<LavaLikeFluid.Flowing> MOLTEN_GRAVITITE =
+            newMoltenFluid("Gravitite", () -> 0xCA5EC3).register();
+
     public static FluidBuilder<LavaLikeFluid.Flowing, Registration> newMoltenFluid(String type, Supplier<Integer> hexColor) {
         var name = "Molten " + type;
         String id = name.toLowerCase().replace(" ", "_");

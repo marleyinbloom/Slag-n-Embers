@@ -23,10 +23,10 @@ public class MaterialType {
 
     public final float ench;
 
-
     public final String texture;
     public final String id;
     public final boolean fireProof;
+    public final boolean aetherEfficient;
     public final Supplier<Ingredient> repairMaterials;
     public final Supplier<Fluid> moltenFluid;
 
@@ -40,6 +40,7 @@ public class MaterialType {
             Codec.FLOAT.fieldOf("ench").forGetter(m -> m.ench),
 
             Codec.BOOL.optionalFieldOf("fireproof", false).forGetter(m -> m.fireProof),
+            Codec.BOOL.optionalFieldOf("aether_efficient", false).forGetter(m -> m.aetherEfficient),
             Codec.STRING.optionalFieldOf("texture", "base").forGetter(m -> m.texture),
             Ingredient.CODEC.fieldOf("repair_ingredient").forGetter(m -> m.repairMaterials.get()),
             ResourceLocation.CODEC.optionalFieldOf("molten_fluid").forGetter(m -> {
@@ -59,6 +60,7 @@ public class MaterialType {
                     Codec.FLOAT.fieldOf("toughness").forGetter(m -> m.toughness),
 
                     Codec.BOOL.optionalFieldOf("fireproof", false).forGetter(m -> m.fireProof),
+                    Codec.BOOL.optionalFieldOf("aether_efficient", false).forGetter(m -> m.aetherEfficient),
                     Codec.STRING.optionalFieldOf("texture", "base").forGetter(m -> m.texture),
                     Ingredient.CODEC.fieldOf("repair_ingredient").forGetter(m -> m.repairMaterials.get()),
                     ResourceLocation.CODEC.optionalFieldOf("molten_fluid").forGetter(m -> {
@@ -80,7 +82,7 @@ public class MaterialType {
         return false;
     }
 
-    public MaterialType(String id, float kbRes, float defence, float toughness, boolean fireProof, String texture, Ingredient repairIngredient, Optional<ResourceLocation> moltenFluidId) {
+    public MaterialType(String id, float kbRes, float defence, float toughness, boolean fireProof, boolean aetherEfficient, String texture, Ingredient repairIngredient, Optional<ResourceLocation> moltenFluidId) {
         this.id = id;
 
         this.kbRes = kbRes;
@@ -95,12 +97,13 @@ public class MaterialType {
 
         this.texture = texture;
         this.fireProof = fireProof;
+        this.aetherEfficient = aetherEfficient;
         this.repairMaterials = () -> repairIngredient;
         this.moltenFluid = () -> moltenFluidId.map(BuiltInRegistries.FLUID::get).orElse(null);
     }
 
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    private MaterialType(String id, float speed, float dura, float tough, float sharp, float ench, boolean fireProof, String texture, Ingredient repairIngredient, Optional<ResourceLocation> moltenFluidId) {
+    private MaterialType(String id, float speed, float dura, float tough, float sharp, float ench, boolean fireProof, boolean aetherEfficient, String texture, Ingredient repairIngredient, Optional<ResourceLocation> moltenFluidId) {
         this.id = id;
 
         this.speed = speed;
@@ -115,11 +118,12 @@ public class MaterialType {
 
         this.texture = texture;
         this.fireProof = fireProof;
+        this.aetherEfficient = aetherEfficient;
         this.repairMaterials = () -> repairIngredient;
         this.moltenFluid = () -> moltenFluidId.map(BuiltInRegistries.FLUID::get).orElse(null);
     }
 
-    public MaterialType(String id, float kbRes, float defence, float toughness, boolean fireProof, String texture, Supplier<Ingredient> repairMaterials, Supplier<Fluid> moltenFluid) {
+    public MaterialType(String id, float kbRes, float defence, float toughness, boolean fireProof, boolean aetherEfficient, String texture, Supplier<Ingredient> repairMaterials, Supplier<Fluid> moltenFluid) {
         this.id = id;
 
         this.kbRes = kbRes;
@@ -134,11 +138,12 @@ public class MaterialType {
 
         this.texture = texture;
         this.fireProof = fireProof;
+        this.aetherEfficient = aetherEfficient;
         this.repairMaterials = repairMaterials;
         this.moltenFluid = moltenFluid;
     }
 
-    private MaterialType(String id, float speed, float dura, float tough, float sharp, float ench, boolean fireProof, String texture, Supplier<Ingredient> repairMaterials, Supplier<Fluid> moltenFluid) {
+    private MaterialType(String id, float speed, float dura, float tough, float sharp, float ench, boolean fireProof, boolean aetherEfficient, String texture, Supplier<Ingredient> repairMaterials, Supplier<Fluid> moltenFluid) {
         this.id = id;
 
         this.speed = speed;
@@ -153,6 +158,7 @@ public class MaterialType {
 
         this.texture = texture;
         this.fireProof = fireProof;
+        this.aetherEfficient = aetherEfficient;
         this.repairMaterials = repairMaterials;
         this.moltenFluid = moltenFluid;
     }
@@ -169,6 +175,7 @@ public class MaterialType {
         private float toughness = 0;
 
         private boolean fireProof = false;
+        private boolean aetherEfficient = false;
         private final Supplier<Ingredient> repair;
         private Supplier<Fluid> moltenFluid = () -> null;
         private String texture = "base";
@@ -191,16 +198,17 @@ public class MaterialType {
         public Builder setTexture(String texture) { this.texture = texture; return this; }
         public Builder moltenFluid(Supplier<Fluid> moltenFluid) { this.moltenFluid = moltenFluid; return this; }
         public Builder fireProof() { this.fireProof = true; return this; }
+        public Builder aetherEfficient() { this.aetherEfficient = true; return this; }
 
         public Builder apply(java.util.function.Function<Builder, Builder> func) {
             return func.apply(this);
         }
 
         public MaterialType registerTool() {
-            return new MaterialType(id, speed, dura, tough, sharp, ench, fireProof, texture, repair, moltenFluid);
+            return new MaterialType(id, speed, dura, tough, sharp, ench, fireProof, aetherEfficient, texture, repair, moltenFluid);
         }
         public MaterialType registerArmor() {
-            return new MaterialType(id, kbRes, defence, toughness, fireProof, texture, repair, moltenFluid);
+            return new MaterialType(id, kbRes, defence, toughness, fireProof, aetherEfficient, texture, repair, moltenFluid);
         }
     }
 }

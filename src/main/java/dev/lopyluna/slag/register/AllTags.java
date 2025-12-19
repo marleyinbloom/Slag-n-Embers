@@ -75,8 +75,14 @@ public class AllTags {
     public static void genBlockTags(RegistrateTagsProvider<Block> provIn) {
         TagsProvider<Block> prov = new TagsProvider<>(provIn, Block::builtInRegistryHolder);
         prov.tag(MELTER_HEATER)
+                .add(Blocks.FURNACE)
+                .add(Blocks.BLAST_FURNACE)
+                .add(Blocks.SMOKER)
                 .add(Blocks.LAVA)
                 .add(Blocks.LAVA_CAULDRON)
+                .add(Blocks.MAGMA_BLOCK)
+                .add(AllBlocks.LIT_BLAZE_BURNER.get())
+                .add(AllBlocks.BLAZE_BURNER.get())
                 .addTag(BlockTags.FIRE)
                 .addTag(BlockTags.CAMPFIRES)
         ;

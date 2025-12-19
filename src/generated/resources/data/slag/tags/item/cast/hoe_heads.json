@@ -11,6 +11,10 @@
     "slag:netherite_hoe_head",
     "slag:andesite_hoe_head",
     "slag:zinc_hoe_head",
-    "slag:brass_hoe_head"
+    "slag:brass_hoe_head",
+    "slag:skyroot_hoe_head",
+    "slag:holystone_hoe_head",
+    "slag:zanite_hoe_head",
+    "slag:gravitite_hoe_head"
   ]
 }

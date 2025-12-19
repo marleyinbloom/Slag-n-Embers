@@ -1,5 +1,7 @@
 package dev.lopyluna.slag.register;
 
+import com.aetherteam.aether.item.AetherCreativeTabs;
+import com.simibubi.create.AllCreativeModeTabs;
 import dev.lopyluna.slag.SlagEmbers;
 import dev.lopyluna.slag.content.items.MaterialType;
 import dev.lopyluna.slag.content.items.modular_tool.DataToolParts;
@@ -102,13 +104,14 @@ public class AllCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BASE_TAB = REGISTER.creativeTab().register("base_tab", () -> CreativeModeTab.builder()
             .title(Component.translatableWithFallback("itemGroup." + SlagEmbers.MOD_ID + ".base", SlagEmbers.NAME))
-            .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
+            .withTabsBefore(AetherCreativeTabs.AETHER_SPAWN_EGGS.getKey())
             .icon(AllItems.MODULAR_TOOL::asStack)
             .build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOOLS_PARTS_TAB = REGISTER.creativeTab().register("tools_parts_tab", () -> CreativeModeTab.builder()
             .title(Component.translatableWithFallback("itemGroup." + SlagEmbers.MOD_ID + ".tools_parts", "Tools & Parts"))
-            .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
+            .withTabsBefore(BASE_TAB.getKey())
+            .withTabsAfter(AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .icon(() -> {
                 var baseTool = AllItems.BAKED_TOOL.asStack();
                 var material = AllMaterials.GOLD;

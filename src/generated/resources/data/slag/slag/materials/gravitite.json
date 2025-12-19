@@ -1,0 +1,14 @@
+{
+  "aether_efficient": true,
+  "dura": 1024.0,
+  "ench": 10.0,
+  "id": "gravitite",
+  "molten_fluid": "slag:molten_gravitite",
+  "repair_ingredient": {
+    "tag": "aether:gravitite_repairing"
+  },
+  "sharp": 6.0,
+  "speed": 8.0,
+  "texture": "aether_special",
+  "tough": 5.0
+}

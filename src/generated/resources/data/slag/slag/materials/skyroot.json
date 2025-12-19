@@ -1,0 +1,13 @@
+{
+  "aether_efficient": true,
+  "dura": 64.0,
+  "ench": 15.0,
+  "id": "skyroot",
+  "repair_ingredient": {
+    "tag": "aether:skyroot_repairing"
+  },
+  "sharp": 3.0,
+  "speed": 2.0,
+  "texture": "aether",
+  "tough": 1.0
+}

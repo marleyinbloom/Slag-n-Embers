@@ -11,6 +11,10 @@
     "slag:netherite_shovel_head",
     "slag:andesite_shovel_head",
     "slag:zinc_shovel_head",
-    "slag:brass_shovel_head"
+    "slag:brass_shovel_head",
+    "slag:skyroot_shovel_head",
+    "slag:holystone_shovel_head",
+    "slag:zanite_shovel_head",
+    "slag:gravitite_shovel_head"
   ]
 }

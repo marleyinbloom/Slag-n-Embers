@@ -11,6 +11,10 @@
     "slag:netherite_sword_blade",
     "slag:andesite_sword_blade",
     "slag:zinc_sword_blade",
-    "slag:brass_sword_blade"
+    "slag:brass_sword_blade",
+    "slag:skyroot_sword_blade",
+    "slag:holystone_sword_blade",
+    "slag:zanite_sword_blade",
+    "slag:gravitite_sword_blade"
   ]
 }

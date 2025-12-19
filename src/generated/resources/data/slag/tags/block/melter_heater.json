@@ -1,7 +1,13 @@
 {
   "values": [
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:smoker",
     "minecraft:lava",
     "minecraft:lava_cauldron",
+    "minecraft:magma_block",
+    "create:lit_blaze_burner",
+    "create:blaze_burner",
     "#minecraft:fire",
     "#minecraft:campfires"
   ]

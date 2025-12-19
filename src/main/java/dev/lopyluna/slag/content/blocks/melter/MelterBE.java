@@ -1,5 +1,6 @@
 package dev.lopyluna.slag.content.blocks.melter;
 
+import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import dev.lopyluna.slag.content.blocks.melter.client.MelterMenu;
 import dev.lopyluna.slag.content.blocks.multiblock.LerpedFloat;
 import dev.lopyluna.slag.content.blocks.smart.BlockEntityBehaviour;
@@ -14,6 +15,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -24,7 +26,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.FurnaceBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -144,6 +150,18 @@ public class MelterBE extends SmartBlockEntity implements MenuProvider {
         if (!belowState.is(AllTags.MELTER_HEATER)) {
             notMelting();
             return false;
+        } else {
+            if (belowState.hasProperty(FurnaceBlock.LIT)) {
+                if (!belowState.getValue(CampfireBlock.LIT)) {
+                    notMelting();
+                    return false;
+                }
+            } else if (belowState.hasProperty(BlazeBurnerBlock.HEAT_LEVEL)) {
+                if (belowState.getValue(BlazeBurnerBlock.HEAT_LEVEL) == BlazeBurnerBlock.HeatLevel.NONE) {
+                    notMelting();
+                    return false;
+                }
+            }
         }
 
         var input = new SingleRecipeInput(stack);

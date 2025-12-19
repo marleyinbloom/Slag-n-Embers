@@ -11,6 +11,10 @@
     "slag:netherite_pickaxe_head",
     "slag:andesite_pickaxe_head",
     "slag:zinc_pickaxe_head",
-    "slag:brass_pickaxe_head"
+    "slag:brass_pickaxe_head",
+    "slag:skyroot_pickaxe_head",
+    "slag:holystone_pickaxe_head",
+    "slag:zanite_pickaxe_head",
+    "slag:gravitite_pickaxe_head"
   ]
 }

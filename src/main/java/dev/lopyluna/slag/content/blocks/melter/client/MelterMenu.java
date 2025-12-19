@@ -1,6 +1,8 @@
 package dev.lopyluna.slag.content.blocks.melter.client;
 
 import com.mojang.datafixers.util.Pair;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import dev.lopyluna.slag.content.AllUtils;
 import dev.lopyluna.slag.content.blocks.melter.MelterBE;
 import dev.lopyluna.slag.register.AllMenuTypes;
@@ -94,6 +96,9 @@ public class MelterMenu extends AbstractContainerMenu {
         var below = getBelowState();
         if (below.is(AllTags.MELTER_HEATER)) bool = true;
         var stack = AllUtils.getStackFromBlock(below.getBlock(), false);
+        if (below.is(AllBlocks.LIT_BLAZE_BURNER)) {
+            stack = AllItems.EMPTY_BLAZE_BURNER.asStack();
+        }
         return Pair.of(stack, bool);
     }
 

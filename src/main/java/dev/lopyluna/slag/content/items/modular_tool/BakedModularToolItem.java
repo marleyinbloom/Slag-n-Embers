@@ -2,6 +2,7 @@ package dev.lopyluna.slag.content.items.modular_tool;
 
 import com.mojang.datafixers.util.Pair;
 import dev.lopyluna.slag.mixin.AxeItemAccessor;
+import dev.lopyluna.slag.register.AllDataComponents;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -52,12 +53,19 @@ public class BakedModularToolItem extends ModularToolItem {
 
     @Override
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
-        var flag = false;
+        var fire_flag = false;
         for (var part : getToolParts(stack)) if (part.getMaterialType().fireProof) {
-            flag = true;
+            fire_flag = true;
             break;
         }
-        if (flag) stack.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        if (fire_flag) stack.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+
+        var aether_flag = false;
+        for (var part : getToolParts(stack)) if (part.getMaterialType().aetherEfficient) {
+            aether_flag = true;
+            break;
+        }
+        if (aether_flag) stack.set(AllDataComponents.AETHER_EFFICIENT, Unit.INSTANCE);
 
         return super.getDefaultAttributeModifiers(stack)
                 .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, averageMod(stack, IToolPart::getSharp) * averageMod(stack, IToolPart::getSharpMod), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)

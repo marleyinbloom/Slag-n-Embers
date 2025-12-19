@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": {
+      "tag": "aether:skyroot_repairing"
+    },
+    "R": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "pattern": [
+    "MM",
+    "MR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "slag:skyroot_axe_head"
+  }
+}

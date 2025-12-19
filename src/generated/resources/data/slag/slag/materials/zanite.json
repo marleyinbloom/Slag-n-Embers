@@ -1,0 +1,14 @@
+{
+  "aether_efficient": true,
+  "dura": 256.0,
+  "ench": 14.0,
+  "id": "zanite",
+  "molten_fluid": "slag:molten_zanite",
+  "repair_ingredient": {
+    "tag": "aether:zanite_repairing"
+  },
+  "sharp": 5.0,
+  "speed": 6.0,
+  "texture": "aether_special",
+  "tough": 4.0
+}

@@ -1,0 +1,13 @@
+{
+  "aether_efficient": true,
+  "dura": 128.0,
+  "ench": 5.0,
+  "id": "holystone",
+  "repair_ingredient": {
+    "tag": "aether:holystone_repairing"
+  },
+  "sharp": 4.0,
+  "speed": 4.0,
+  "texture": "aether",
+  "tough": 3.0
+}

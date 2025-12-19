@@ -45,6 +45,13 @@
 
     { "type": "single", "resource": "slag:fluid/molten_zinc_flow" },
     { "type": "single", "resource": "slag:fluid/molten_zinc_still" },
+
+
+    { "type": "single", "resource": "slag:fluid/molten_gravitite_flow" },
+    { "type": "single", "resource": "slag:fluid/molten_gravitite_still" },
+
+    { "type": "single", "resource": "slag:fluid/molten_zanite_flow" },
+    { "type": "single", "resource": "slag:fluid/molten_zanite_still" },
     {
       "type": "paletted_permutations",
       "textures": [
@@ -313,6 +320,168 @@
         "purpur": "slag:color_palettes/purpur",
 
         "zinc": "slag:color_palettes/zinc"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "slag:item/aether/axe_head",
+        "slag:item/aether/hoe_head",
+        "slag:item/aether/pickaxe_head",
+        "slag:item/aether/shovel_head",
+        "slag:item/aether/sword_blade",
+        "slag:item/aether/guard",
+        "slag:item/aether/hammer_head",
+
+        "slag:item/built/aether/axe_head",
+        "slag:item/built/aether/hoe_head",
+        "slag:item/built/aether/pickaxe_head",
+        "slag:item/built/aether/shovel_head",
+        "slag:item/built/aether/sword_blade",
+        "slag:item/built/aether/guard",
+
+        "slag:item/built/aether/axe_hammer",
+        "slag:item/built/aether/axe_mallet",
+        "slag:item/built/aether/axe_mattock",
+        "slag:item/built/aether/axe_maul",
+
+        "slag:item/built/aether/hoe_graip",
+        "slag:item/built/aether/hoe_mattock",
+        "slag:item/built/aether/hoe_scythe",
+
+        "slag:item/built/aether/pickaxe_hammer",
+        "slag:item/built/aether/pickaxe_mallet",
+        "slag:item/built/aether/pickaxe_maul",
+        "slag:item/built/aether/pickaxe_prybar",
+
+        "slag:item/built/aether/shovel_graip",
+        "slag:item/built/aether/shovel_hammer",
+        "slag:item/built/aether/shovel_prybar",
+
+        "slag:item/built/aether/sword_maul",
+        "slag:item/built/aether/sword_scythe",
+
+        "slag:item/built/aether/guard_scythe",
+
+        "slag:item/built/aether/axe_paxel",
+        "slag:item/built/aether/hoe_paxel",
+        "slag:item/built/aether/pickaxe_paxel",
+        "slag:item/built/aether/shovel_paxel",
+        "slag:item/built/aether/sword_paxel"
+
+      ],
+      "palette_key": "slag:color_palettes/base_aether",
+      "permutations": {
+        "skyroot": "slag:color_palettes/skyroot",
+        "holystone": "slag:color_palettes/holystone"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "slag:item/aether_shiny/axe_head",
+        "slag:item/aether_shiny/hoe_head",
+        "slag:item/aether_shiny/pickaxe_head",
+        "slag:item/aether_shiny/shovel_head",
+        "slag:item/aether_shiny/sword_blade",
+        "slag:item/aether_shiny/guard",
+        "slag:item/aether_shiny/hammer_head",
+
+        "slag:item/built/aether_shiny/axe_head",
+        "slag:item/built/aether_shiny/hoe_head",
+        "slag:item/built/aether_shiny/pickaxe_head",
+        "slag:item/built/aether_shiny/shovel_head",
+        "slag:item/built/aether_shiny/sword_blade",
+        "slag:item/built/aether_shiny/guard",
+
+        "slag:item/built/aether_shiny/axe_hammer",
+        "slag:item/built/aether_shiny/axe_mallet",
+        "slag:item/built/aether_shiny/axe_mattock",
+        "slag:item/built/aether_shiny/axe_maul",
+
+        "slag:item/built/aether_shiny/hoe_graip",
+        "slag:item/built/aether_shiny/hoe_mattock",
+        "slag:item/built/aether_shiny/hoe_scythe",
+
+        "slag:item/built/aether_shiny/pickaxe_hammer",
+        "slag:item/built/aether_shiny/pickaxe_mallet",
+        "slag:item/built/aether_shiny/pickaxe_maul",
+        "slag:item/built/aether_shiny/pickaxe_prybar",
+
+        "slag:item/built/aether_shiny/shovel_graip",
+        "slag:item/built/aether_shiny/shovel_hammer",
+        "slag:item/built/aether_shiny/shovel_prybar",
+
+        "slag:item/built/aether_shiny/sword_maul",
+        "slag:item/built/aether_shiny/sword_scythe",
+
+        "slag:item/built/aether_shiny/guard_scythe",
+
+        "slag:item/built/aether_shiny/axe_paxel",
+        "slag:item/built/aether_shiny/hoe_paxel",
+        "slag:item/built/aether_shiny/pickaxe_paxel",
+        "slag:item/built/aether_shiny/shovel_paxel",
+        "slag:item/built/aether_shiny/sword_paxel"
+
+      ],
+      "palette_key": "slag:color_palettes/base_aether",
+      "permutations": {
+        "skyjade": "slag:color_palettes/skyjade"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "slag:item/aether_special/axe_head",
+        "slag:item/aether_special/hoe_head",
+        "slag:item/aether_special/pickaxe_head",
+        "slag:item/aether_special/shovel_head",
+        "slag:item/aether_special/sword_blade",
+        "slag:item/aether_special/guard",
+        "slag:item/aether_special/hammer_head",
+
+        "slag:item/built/aether_special/axe_head",
+        "slag:item/built/aether_special/hoe_head",
+        "slag:item/built/aether_special/pickaxe_head",
+        "slag:item/built/aether_special/shovel_head",
+        "slag:item/built/aether_special/sword_blade",
+        "slag:item/built/aether_special/guard",
+
+        "slag:item/built/aether_special/axe_hammer",
+        "slag:item/built/aether_special/axe_mallet",
+        "slag:item/built/aether_special/axe_mattock",
+        "slag:item/built/aether_special/axe_maul",
+
+        "slag:item/built/aether_special/hoe_graip",
+        "slag:item/built/aether_special/hoe_mattock",
+        "slag:item/built/aether_special/hoe_scythe",
+
+        "slag:item/built/aether_special/pickaxe_hammer",
+        "slag:item/built/aether_special/pickaxe_mallet",
+        "slag:item/built/aether_special/pickaxe_maul",
+        "slag:item/built/aether_special/pickaxe_prybar",
+
+        "slag:item/built/aether_special/shovel_graip",
+        "slag:item/built/aether_special/shovel_hammer",
+        "slag:item/built/aether_special/shovel_prybar",
+
+        "slag:item/built/aether_special/sword_maul",
+        "slag:item/built/aether_special/sword_scythe",
+
+        "slag:item/built/aether_special/guard_scythe",
+
+        "slag:item/built/aether_special/axe_paxel",
+        "slag:item/built/aether_special/hoe_paxel",
+        "slag:item/built/aether_special/pickaxe_paxel",
+        "slag:item/built/aether_special/shovel_paxel",
+        "slag:item/built/aether_special/sword_paxel"
+
+      ],
+      "palette_key": "slag:color_palettes/base_aether",
+      "permutations": {
+        "zanite": "slag:color_palettes/zanite",
+        "gravitite": "slag:color_palettes/gravitite",
+        "stratus": "slag:color_palettes/stratus"
       }
     }
   ]

@@ -11,6 +11,10 @@
     "slag:netherite_guard",
     "slag:andesite_guard",
     "slag:zinc_guard",
-    "slag:brass_guard"
+    "slag:brass_guard",
+    "slag:skyroot_guard",
+    "slag:holystone_guard",
+    "slag:zanite_guard",
+    "slag:gravitite_guard"
   ]
 }

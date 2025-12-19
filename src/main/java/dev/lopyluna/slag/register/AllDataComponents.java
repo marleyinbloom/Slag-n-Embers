@@ -30,6 +30,9 @@ public class AllDataComponents {
             .registerComponentType("armor_type", b -> b
                     .persistent(ArmorItem.Type.CODEC).networkSynchronized(ModularArmorItem.STREAM_CODEC).cacheEncoding());
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> AETHER_EFFICIENT = REGISTER.components()
+            .registerComponentType("aether_efficient", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
 
 
 

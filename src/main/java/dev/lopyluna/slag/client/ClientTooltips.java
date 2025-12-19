@@ -55,6 +55,7 @@ public class ClientTooltips {
 
                 AllLangs.modularToolStats(tooltip, parts, stack, item);
                 AllLangs.modularToolParts(tooltip, toolParts);
+                AllLangs.modularToolAbilities(tooltip, stack);
             } else tooltip.add(AllLangs.tr("modular_tool_waiting").withStyle(ChatFormatting.GRAY));
         }
     }

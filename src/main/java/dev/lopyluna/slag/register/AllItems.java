@@ -89,6 +89,11 @@ public class AllItems {
     public static final MaterialType ZINC = AllMaterials.ZINC;
     public static final MaterialType BRASS = AllMaterials.BRASS;
 
+    public static final MaterialType SKYROOT = AllMaterials.SKYROOT;
+    public static final MaterialType HOLYSTONE = AllMaterials.HOLYSTONE;
+    public static final MaterialType ZANITE = AllMaterials.ZANITE;
+    public static final MaterialType GRAVITITE = AllMaterials.GRAVITITE;
+
     static {
         TOOL_PART_TYPES.add(AXE_HEAD);
         TOOL_PART_TYPES.add(PICKAXE_HEAD);

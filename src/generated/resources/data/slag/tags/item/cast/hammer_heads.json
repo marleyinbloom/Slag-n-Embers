@@ -11,6 +11,10 @@
     "slag:netherite_hammer_head",
     "slag:andesite_hammer_head",
     "slag:zinc_hammer_head",
-    "slag:brass_hammer_head"
+    "slag:brass_hammer_head",
+    "slag:skyroot_hammer_head",
+    "slag:holystone_hammer_head",
+    "slag:zanite_hammer_head",
+    "slag:gravitite_hammer_head"
   ]
 }

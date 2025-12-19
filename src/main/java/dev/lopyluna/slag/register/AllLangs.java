@@ -10,6 +10,7 @@ import dev.lopyluna.slag.content.items.modular_tool.ModularToolItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -86,6 +87,18 @@ public class AllLangs {
         }
     }
 
+    public static void modularToolAbilities(List<Component> tooltip, ItemStack stack) {
+        var index = tooltip.size();
+        if (stack.has(DataComponents.FIRE_RESISTANT)) tooltip.add(Component.literal(" ")
+                .append(tr("ability_fire_resistant")).withStyle(ChatFormatting.GOLD));
+        if (stack.has(AllDataComponents.AETHER_EFFICIENT)) tooltip.add(Component.literal(" ")
+                .append(tr("ability_aether_efficient")).withStyle(ChatFormatting.DARK_AQUA));
+
+        if (tooltip.size() != index) {
+            tooltip.add(index, tr("modular_abilities").append(":").withStyle(ChatFormatting.GRAY));
+        }
+    }
+
     public static void addTranslations() {
         REG.addLang("tooltip", SlagEmbers.loc("cast_shift_clear"), "Interact with Empty Hand while Crouching:");
         REG.addLang("tooltip", SlagEmbers.loc("cast_shift_clear.desc"), "Clear Fluid Contents");
@@ -114,6 +127,10 @@ public class AllLangs {
         REG.addLang("tooltip", SlagEmbers.loc("modular_forging_tier"), "Forging Tier");
         REG.addLang("tooltip", SlagEmbers.loc("modular_parts"), "Modular Parts");
 
+        REG.addLang("tooltip", SlagEmbers.loc("modular_abilities"), "Modular Abilites");
+        REG.addLang("tooltip", SlagEmbers.loc("ability_fire_resistant"), "Fire Proof");
+        REG.addLang("tooltip", SlagEmbers.loc("ability_aether_efficient"), "Aetherbound");
+
         REG.addLang("tooltip", SlagEmbers.loc("imprint"), "Right-click with certain items to imprint the mold.");
         REG.addLang("tooltip", SlagEmbers.loc("clear_imprint"), "Right-click with nothing to clear imprint.");
 
@@ -123,6 +140,7 @@ public class AllLangs {
 
         REG.addLang("tooltip", SlagEmbers.loc("stats"), "Hold [%s] for Stats");
         REG.addLang("tooltip", SlagEmbers.loc("parts"), "Hold [%s] for Parts");
+        REG.addLang("tooltip", SlagEmbers.loc("parts"), "Hold [%s] for Abilities");
         REG.addLang("tooltip", SlagEmbers.loc("desc"), "Hold [%s] for Info");
         REG.addLang("tooltip", SlagEmbers.loc("dynamic_multiblock"), "Dynamic Multiblock");
 
@@ -140,7 +158,9 @@ public class AllLangs {
         for (var material : List.of("purpur", "flint", "bone", "nautilus", "rose_gold", "deep_alloy",
                 "wooden", "stone", "quartz", "iron", "golden", "diamond", "netherite", "redstone", "copper",
                 "emerald", "lapis", "amethyst", "obsidian", "blue_icy", "echo", "prismarine", "glowstone",
-                "andesite", "zinc", "brass"
+                "andesite", "zinc", "brass",
+                "skyroot", "holystone", "zanite", "gravitite",
+                "skyjade", "stratus"
         )) for (var mixture : List.of("pickaxe", "axe", "shovel", "hoe", "sword", "mattock", "prybar", "graip", "mallet", "hammer", "scythe", "maul", "paxel")) {
             var name = material + "_" + mixture;
             REG.addRawLang(Util.makeDescriptionId("item", SlagEmbers.loc(name)), RegistrateLangProvider.toEnglishName(name));

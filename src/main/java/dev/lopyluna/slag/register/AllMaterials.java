@@ -1,5 +1,6 @@
 package dev.lopyluna.slag.register;
 
+import com.aetherteam.aether.AetherTags;
 import com.simibubi.create.AllItems;
 import dev.lopyluna.slag.content.items.MaterialType;
 import net.minecraft.tags.ItemTags;
@@ -261,6 +262,49 @@ public class AllMaterials {
             .setTexture("shiny")
             .fireProof()
             .moltenFluid(AllFluids.MOLTEN_BRASS::getSource)
+            .registerTool());
+
+
+    public static final MaterialType SKYROOT = register(new MaterialType.Builder("skyroot", () -> Ingredient.of(AetherTags.Items.SKYROOT_REPAIRING))
+            .setSharp(3f)
+            .setDura(64)
+            .setTough(1)
+            .setSpeed(2)
+            .setEnch(15)
+            .aetherEfficient()
+            .setTexture("aether")
+            .registerTool());
+
+    public static final MaterialType HOLYSTONE = register(new MaterialType.Builder("holystone", () -> Ingredient.of(AetherTags.Items.HOLYSTONE_REPAIRING))
+            .setSharp(4f)
+            .setDura(128)
+            .setTough(3)
+            .setSpeed(4)
+            .setEnch(5)
+            .aetherEfficient()
+            .setTexture("aether")
+            .registerTool());
+
+    public static final MaterialType ZANITE = register(new MaterialType.Builder("zanite", () -> Ingredient.of(AetherTags.Items.ZANITE_REPAIRING))
+            .setSharp(5f)
+            .setDura(256)
+            .setTough(4)
+            .setSpeed(6)
+            .setEnch(14)
+            .aetherEfficient()
+            .setTexture("aether_special")
+            .moltenFluid(AllFluids.MOLTEN_ZANITE::getSource)
+            .registerTool());
+
+    public static final MaterialType GRAVITITE = register(new MaterialType.Builder("gravitite", () -> Ingredient.of(AetherTags.Items.GRAVITITE_REPAIRING))
+            .setSharp(6f)
+            .setDura(1024)
+            .setTough(5)
+            .setSpeed(8)
+            .setEnch(10)
+            .aetherEfficient()
+            .setTexture("aether_special")
+            .moltenFluid(AllFluids.MOLTEN_GRAVITITE::getSource)
             .registerTool());
 
     private static MaterialType register(MaterialType material) {
