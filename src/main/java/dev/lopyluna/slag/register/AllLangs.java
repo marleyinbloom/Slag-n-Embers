@@ -140,7 +140,6 @@ public class AllLangs {
 
         REG.addLang("tooltip", SlagEmbers.loc("stats"), "Hold [%s] for Stats");
         REG.addLang("tooltip", SlagEmbers.loc("parts"), "Hold [%s] for Parts");
-        REG.addLang("tooltip", SlagEmbers.loc("parts"), "Hold [%s] for Abilities");
         REG.addLang("tooltip", SlagEmbers.loc("desc"), "Hold [%s] for Info");
         REG.addLang("tooltip", SlagEmbers.loc("dynamic_multiblock"), "Dynamic Multiblock");
 
