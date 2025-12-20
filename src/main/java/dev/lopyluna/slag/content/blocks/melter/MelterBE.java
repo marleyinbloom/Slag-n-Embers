@@ -171,9 +171,22 @@ public class MelterBE extends SmartBlockEntity implements MenuProvider {
             var access = level.registryAccess();
             var fluid = recipe.getResultFluid(access);
             var amount = fluid.getAmount();
-            meltingTarget = Mth.clamp((int) ((float) amount * 0.5f), 4, 256);
-            if (meltingTarget > meltingProgress) ++meltingProgress;
-            else {
+            meltingTarget = Math.max(amount, 4);
+            if (meltingTarget > meltingProgress) {
+                var quickHeating = false;
+                if (belowState.is(AllTags.MELTER_QUICK_HEATER)) {
+                    if (belowState.hasProperty(BlazeBurnerBlock.HEAT_LEVEL)) {
+                        if (belowState.getValue(BlazeBurnerBlock.HEAT_LEVEL) == BlazeBurnerBlock.HeatLevel.KINDLED ||
+                                belowState.getValue(BlazeBurnerBlock.HEAT_LEVEL) == BlazeBurnerBlock.HeatLevel.SEETHING) {
+                            quickHeating = true;
+                        }
+                    } else {
+                        quickHeating = true;
+                    }
+                }
+
+                meltingProgress += quickHeating ? 2 : 1;
+            } else {
                 if (amount + tank.getFluidAmount() > tank.getCapacity()) return true;
                 meltingProgress = 0;
                 stack.shrink(1);
@@ -266,7 +279,7 @@ public class MelterBE extends SmartBlockEntity implements MenuProvider {
         int prevLum = luminosity;
         luminosity = tag.getInt("Luminosity");
 
-        tankInventory.setCapacity(3000);
+        tankInventory.setCapacity(5000);
 
         tankInventory.readFromNBT(registries, tag.getCompound("TankContent"));
         if (tankInventory.getSpace() < 0) tankInventory.drain(-tankInventory.getSpace(), IFluidHandler.FluidAction.EXECUTE);

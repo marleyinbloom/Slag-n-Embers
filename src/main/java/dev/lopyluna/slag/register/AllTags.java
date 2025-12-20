@@ -71,6 +71,7 @@ public class AllTags {
     }
 
     public static TagKey<Block> MELTER_HEATER = block("melter_heater");
+    public static TagKey<Block> MELTER_QUICK_HEATER = block("melter_quick_heater");
 
     public static void genBlockTags(RegistrateTagsProvider<Block> provIn) {
         TagsProvider<Block> prov = new TagsProvider<>(provIn, Block::builtInRegistryHolder);
@@ -84,8 +85,13 @@ public class AllTags {
                 .add(AllBlocks.LIT_BLAZE_BURNER.get())
                 .add(AllBlocks.BLAZE_BURNER.get())
                 .addTag(BlockTags.FIRE)
-                .addTag(BlockTags.CAMPFIRES)
-        ;
+                .addTag(BlockTags.CAMPFIRES);
+
+        prov.tag(MELTER_QUICK_HEATER)
+                .add(Blocks.FURNACE)
+                .add(Blocks.BLAST_FURNACE)
+                .add(Blocks.SMOKER)
+                .add(AllBlocks.BLAZE_BURNER.get());
     }
 
     public static TagKey<Item> DEEP_ALLOY_STONES = item("deep_alloy_stones");
