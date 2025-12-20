@@ -1,10 +1,10 @@
 {
   "type": "slag:melting",
   "ingredient": {
-    "item": "slag:gravitite_axe_head"
+    "tag": "aether:processed/gravitite"
   },
   "result": {
-    "amount": 1944,
+    "amount": 648,
     "id": "slag:molten_gravitite"
   }
 }

@@ -1,12 +1,11 @@
 {
-  "type": "slag:table_casting",
-  "cast": "slag:cast/guards",
+  "type": "slag:basin_casting",
   "ingredient": {
     "amount": 648,
     "id": "slag:molten_gravitite"
   },
   "result": {
     "count": 1,
-    "id": "slag:gravitite_guard"
+    "id": "aether:enchanted_gravitite"
   }
 }

@@ -227,12 +227,12 @@ public class AllItems {
                     var fluid = material.moltenFluid.get();
                     if (fluid != null) {
                         var cast = getCast(part);
-
-                        var size = MelterBE.INGOT_SIZE;
-                        size *= getSize(part);
-                        if (size > 0 && fluid == AllFluids.MOLTEN_NETHERITE.getSource()) size = MelterBE.INGOT_SIZE;
+                        var size = MelterBE.INGOT_SIZE * getSize(part);
 
                         if (size > 0) {
+                            if (fluid == AllFluids.MOLTEN_NETHERITE.getSource()) size = MelterBE.INGOT_SIZE;
+                            else if (fluid == AllFluids.MOLTEN_GRAVITITE.getSource()) size = MelterBE.BLOCK_SIZE * getSize(part);
+
                             if (cast != null) AllBlocks.create(p, part.id, material.id, c.get(), fluid, size, cast);
                             MeltingRecipeBuilder.create(fluid, size, c.get())
                                     .unlockedBy("has_blueprint", has(MODULAR_TOOL))

@@ -2,7 +2,7 @@
   "type": "slag:table_casting",
   "cast": "slag:cast/axe_heads",
   "ingredient": {
-    "amount": 216,
+    "amount": 1944,
     "id": "slag:molten_gravitite"
   },
   "result": {

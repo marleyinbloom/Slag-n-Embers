@@ -2,7 +2,7 @@
   "type": "slag:table_casting",
   "cast": "slag:cast/hammer_heads",
   "ingredient": {
-    "amount": 360,
+    "amount": 3240,
     "id": "slag:molten_gravitite"
   },
   "result": {

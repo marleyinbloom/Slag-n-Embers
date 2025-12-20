@@ -1,5 +1,8 @@
 package dev.lopyluna.slag.register;
 
+import com.aetherteam.aether.AetherTags;
+import com.aetherteam.aether.block.AetherBlocks;
+import com.aetherteam.aether.item.AetherItems;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.FluidEntry;
@@ -115,17 +118,6 @@ public class AllBlocks {
                         .define('A', AllTags.itemC("ingots/deep_alloy"))
                         .unlockedBy("has_deep_alloy", has(AllTags.itemC("ingots/deep_alloy"))).save(p, SlagEmbers.loc("crafting/" + c.getName()));
 
-                /*
-                create(p, "gem", "emerald", Items.EMERALD, AllFluids.MOLTEN_EMERALD, MelterBE.INGOT_SIZE, AllTags.CAST_GEMS);
-                create(p, "gem", "lapis", Items.LAPIS_LAZULI, AllFluids.MOLTEN_LAPIS, MelterBE.INGOT_SIZE, AllTags.CAST_GEMS);
-
-                create(p, "gem", "quartz", Items.QUARTZ, AllFluids.MOLTEN_QUARTZ, MelterBE.INGOT_SIZE, AllTags.CAST_GEMS);
-                create(p, "gem", "amethyst", Items.AMETHYST_SHARD, AllFluids.MOLTEN_AMETHYST, MelterBE.INGOT_SIZE, AllTags.CAST_GEMS);
-                create(p, "gem", "prismarine", Items.PRISMARINE, AllFluids.MOLTEN_PRISMARINE, MelterBE.INGOT_SIZE, AllTags.CAST_GEMS);
-
-                create(p, "dust", "redstone", Items.REDSTONE, AllFluids.MOLTEN_REDSTONE, MelterBE.INGOT_SIZE, AllTags.CAST_DUSTS);
-                */
-
                 create(p, "ingot", "copper", Items.COPPER_INGOT, AllFluids.MOLTEN_COPPER, MelterBE.INGOT_SIZE, AllTags.CAST_INGOTS);
                 create(p, "ingot", "gold", Items.GOLD_INGOT, AllFluids.MOLTEN_GOLD, MelterBE.INGOT_SIZE, AllTags.CAST_INGOTS);
                 create(p, "ingot", "iron", Items.IRON_INGOT, AllFluids.MOLTEN_IRON, MelterBE.INGOT_SIZE, AllTags.CAST_INGOTS);
@@ -152,6 +144,9 @@ public class AllBlocks {
                 create(p, "sheet", "gold", com.simibubi.create.AllItems.GOLDEN_SHEET.get(), AllFluids.MOLTEN_GOLD, MelterBE.INGOT_SIZE, AllTags.CAST_SHEETS);
 
                 create(p, "ingot", "chocolate", com.simibubi.create.AllItems.BAR_OF_CHOCOLATE.get(), com.simibubi.create.AllFluids.CHOCOLATE, MelterBE.SIMPLE_BLOCK_SIZE/4, AllTags.CAST_INGOTS);
+
+                // The Aether
+                create(p, "gem", "zanite", AetherItems.ZANITE_GEMSTONE.asItem(), AllFluids.MOLTEN_ZANITE, MelterBE.INGOT_SIZE, AllTags.CAST_GEMS);
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
@@ -180,14 +175,6 @@ public class AllBlocks {
                         .pattern("AAA")
                         .define('A', AllTags.itemC("ingots/deep_alloy"))
                         .unlockedBy("has_deep_alloy", has(AllTags.itemC("ingots/deep_alloy"))).save(p, SlagEmbers.loc("crafting/" + c.getName()));
-                /*
-                BasinCastingRecipeBuilder.create(Items.AMETHYST_BLOCK, 1, AllFluids.MOLTEN_AMETHYST.getSource(), MelterBE.SMALL_BLOCK_SIZE).unlockedBy("has_block", has(AllTags.itemC("storage_blocks/amethyst"))).save(p, SlagEmbers.loc("casting/basin/amethyst_block"));
-                BasinCastingRecipeBuilder.create(Items.EMERALD_BLOCK, 1, AllFluids.MOLTEN_EMERALD.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(AllTags.itemC("storage_blocks/emerald"))).save(p, SlagEmbers.loc("casting/basin/emerald_block"));
-                BasinCastingRecipeBuilder.create(Items.LAPIS_BLOCK, 1, AllFluids.MOLTEN_LAPIS.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(AllTags.itemC("storage_blocks/lapis"))).save(p, SlagEmbers.loc("casting/basin/lapis_block"));
-                BasinCastingRecipeBuilder.create(Items.QUARTZ_BLOCK, 1, AllFluids.MOLTEN_QUARTZ.getSource(), MelterBE.SMALL_BLOCK_SIZE).unlockedBy("has_block", has(AllTags.QUARTZ_BLOCKS)).save(p, SlagEmbers.loc("casting/basin/quartz_block"));
-                BasinCastingRecipeBuilder.create(Items.REDSTONE_BLOCK, 1, AllFluids.MOLTEN_REDSTONE.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(AllTags.itemC("storage_blocks/redstone"))).save(p, SlagEmbers.loc("casting/basin/redstone_block"));
-                BasinCastingRecipeBuilder.create(Items.OBSIDIAN, 1, AllFluids.MOLTEN_OBSIDIAN.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(Tags.Items.OBSIDIANS)).save(p, SlagEmbers.loc("casting/basin/obsidian"));
-                */
 
                 BasinCastingRecipeBuilder.create(Items.COPPER_BLOCK, 1, AllFluids.MOLTEN_COPPER.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(AllTags.COPPER_BLOCKS)).save(p, SlagEmbers.loc("casting/basin/copper_block"));
                 BasinCastingRecipeBuilder.create(Items.DIAMOND_BLOCK, 1, AllFluids.MOLTEN_DIAMOND.getSource(), MelterBE.BLOCK_SIZE).unlockedBy("has_block", has(AllTags.itemC("storage_blocks/diamond"))).save(p, SlagEmbers.loc("casting/basin/diamond_block"));
@@ -198,10 +185,24 @@ public class AllBlocks {
                 BasinCastingRecipeBuilder.create(Items.STONE, 1, Fluids.LAVA.getSource(), MelterBE.SIMPLE_BLOCK_SIZE).unlockedBy("has_block", has(Items.STONE)).save(p, SlagEmbers.loc("casting/basin/stone"));
 
                 //Create
-                BasinCastingRecipeBuilder.create(com.simibubi.create.AllBlocks.ZINC_BLOCK.asItem(), 1, AllFluids.MOLTEN_ZINC.getSource(), MelterBE.BLOCK_SIZE)
-                        .unlockedBy("has_block", has(com.simibubi.create.AllBlocks.ZINC_BLOCK.asItem())).save(p, SlagEmbers.loc("casting/basin/zinc_block"));
-                BasinCastingRecipeBuilder.create(com.simibubi.create.AllBlocks.BRASS_BLOCK.asItem(), 1, AllFluids.MOLTEN_BRASS.getSource(), MelterBE.BLOCK_SIZE)
-                        .unlockedBy("has_block", has(com.simibubi.create.AllBlocks.BRASS_BLOCK.asItem())).save(p, SlagEmbers.loc("casting/basin/brass_block"));
+                BasinCastingRecipeBuilder.create(com.simibubi.create.AllBlocks.ZINC_BLOCK.asItem(), 1,
+                                AllFluids.MOLTEN_ZINC.getSource(), MelterBE.BLOCK_SIZE)
+                        .unlockedBy("has_block", has(com.simibubi.create.AllBlocks.ZINC_BLOCK.asItem()))
+                        .save(p, SlagEmbers.loc("casting/basin/zinc_block"));
+                BasinCastingRecipeBuilder.create(com.simibubi.create.AllBlocks.BRASS_BLOCK.asItem(), 1,
+                                AllFluids.MOLTEN_BRASS.getSource(), MelterBE.BLOCK_SIZE)
+                        .unlockedBy("has_block", has(com.simibubi.create.AllBlocks.BRASS_BLOCK.asItem()))
+                        .save(p, SlagEmbers.loc("casting/basin/brass_block"));
+
+                // The Aether
+                BasinCastingRecipeBuilder.create(AetherBlocks.ZANITE_BLOCK.asItem(), 1,
+                                AllFluids.MOLTEN_ZANITE.getSource(), MelterBE.BLOCK_SIZE)
+                        .unlockedBy("has_block", has(AetherBlocks.ZANITE_BLOCK.asItem()))
+                        .save(p, SlagEmbers.loc("casting/basin/zanite_block"));
+                BasinCastingRecipeBuilder.create(AetherBlocks.ENCHANTED_GRAVITITE.asItem(), 1,
+                                AllFluids.MOLTEN_GRAVITITE.getSource(), MelterBE.BLOCK_SIZE)
+                        .unlockedBy("has_block", has(AetherBlocks.ENCHANTED_GRAVITITE.asItem()))
+                        .save(p, SlagEmbers.loc("casting/basin/enchanted_gravitite"));
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .item()
@@ -235,18 +236,6 @@ public class AllBlocks {
                         .define('A', AllTags.itemC("ingots/deep_alloy")).define('R', AllTags.itemC("ingots/copper")).define('D', DRAIN.get())
                         .unlockedBy("has_deep_alloy", has(AllTags.itemC("ingots/deep_alloy"))).save(p, SlagEmbers.loc("crafting/" + c.getName()));
 
-                /*
-                gemMeltable(p, "emerald", AllFluids.MOLTEN_EMERALD.getSource(), Tags.Items.STORAGE_BLOCKS_EMERALD, Tags.Items.GEMS_EMERALD, AllTags.itemC("nuggets/emerald"));
-                gemMeltable(p, "lapis", AllFluids.MOLTEN_LAPIS.getSource(), Tags.Items.STORAGE_BLOCKS_LAPIS, Tags.Items.GEMS_LAPIS, AllTags.itemC("nuggets/lapis"));
-                dustMeltable(p, "redstone", AllFluids.MOLTEN_REDSTONE.getSource(), Tags.Items.STORAGE_BLOCKS_REDSTONE, Tags.Items.DUSTS_REDSTONE);
-                crystalMeltable(p, "quartz", AllFluids.MOLTEN_QUARTZ.getSource(), AllTags.QUARTZ_BLOCKS, Tags.Items.GEMS_QUARTZ);
-                crystalMeltable(p, "amethyst", AllFluids.MOLTEN_AMETHYST.getSource(), AllTags.AMETHYST_BLOCKS, Tags.Items.GEMS_AMETHYST);
-                crystalMeltable(p, "prismarine", AllFluids.MOLTEN_PRISMARINE.getSource(), null, Tags.Items.GEMS_PRISMARINE);
-
-                oreMeltableGem(p, "raw_emerald", AllFluids.MOLTEN_EMERALD.getSource(), null, Tags.Items.ORES_EMERALD, null);
-                oreMeltableGem(p, "raw_quartz", AllFluids.MOLTEN_QUARTZ.getSource(), null, Tags.Items.ORES_QUARTZ, null);
-                */
-
                 gemMeltable(p, "diamond", AllFluids.MOLTEN_DIAMOND.getSource(), Tags.Items.STORAGE_BLOCKS_DIAMOND, Tags.Items.GEMS_DIAMOND, AllTags.itemC("nuggets/diamond"));
                 ingotMeltable(p, "copper", AllFluids.MOLTEN_COPPER.getSource(), AllTags.COPPER_BLOCKS, Tags.Items.INGOTS_COPPER, AllTags.itemC("nuggets/copper"));
                 ingotMeltable(p, "gold", AllFluids.MOLTEN_GOLD.getSource(), Tags.Items.STORAGE_BLOCKS_GOLD, Tags.Items.INGOTS_GOLD, Tags.Items.NUGGETS_GOLD);
@@ -267,31 +256,36 @@ public class AllBlocks {
                         .unlockedBy("has_melts_into_water", has(AllTags.MELTS_INTO_WATER))
                         .save(p, SlagEmbers.loc("melting/melts_into_water"));
 
-                ingotMeltable(p, "zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/zinc"), AllTags.itemC("ingots/zinc"), AllTags.itemC("nuggets/zinc"));
-                ingotMeltable(p, "brass", AllFluids.MOLTEN_BRASS.getSource(), AllTags.itemC("storage_blocks/brass"), AllTags.itemC("ingots/brass"), AllTags.itemC("nuggets/brass"));
+                // Create
+                ingotMeltable(p, "zinc", AllFluids.MOLTEN_ZINC.getSource(),
+                        AllTags.itemC("storage_blocks/zinc"), AllTags.itemC("ingots/zinc"), AllTags.itemC("nuggets/zinc"));
+                ingotMeltable(p, "brass", AllFluids.MOLTEN_BRASS.getSource(),
+                        AllTags.itemC("storage_blocks/brass"), AllTags.itemC("ingots/brass"), AllTags.itemC("nuggets/brass"));
 
-                oreMeltable(p, "raw_zinc", AllFluids.MOLTEN_ZINC.getSource(), AllTags.itemC("storage_blocks/raw_zinc"), AllTags.itemC("raw_materials/zinc"), AllTags.ZINC_CRUSHED);
+                oreMeltable(p, "raw_zinc", AllFluids.MOLTEN_ZINC.getSource(),
+                        AllTags.itemC("storage_blocks/raw_zinc"), AllTags.itemC("raw_materials/zinc"), AllTags.ZINC_CRUSHED);
 
                 sheetMeltable(p, "iron", AllFluids.MOLTEN_IRON.getSource(), AllTags.itemC("plates/iron"));
                 sheetMeltable(p, "gold", AllFluids.MOLTEN_GOLD.getSource(), AllTags.itemC("plates/gold"));
                 sheetMeltable(p, "copper", AllFluids.MOLTEN_COPPER.getSource(), AllTags.itemC("plates/copper"));
                 sheetMeltable(p, "brass", AllFluids.MOLTEN_BRASS.getSource(), AllTags.itemC("plates/brass"));
 
-                MeltingRecipeBuilder.create(com.simibubi.create.AllFluids.CHOCOLATE.getSource(), MelterBE.SIMPLE_BLOCK_SIZE/4, com.simibubi.create.AllItems.BAR_OF_CHOCOLATE)
+                MeltingRecipeBuilder.create(com.simibubi.create.AllFluids.CHOCOLATE.getSource(),
+                                MelterBE.SIMPLE_BLOCK_SIZE/4, com.simibubi.create.AllItems.BAR_OF_CHOCOLATE)
                         .unlockedBy("has_meltable_chocolate", has(com.simibubi.create.AllItems.BAR_OF_CHOCOLATE))
                         .save(p, SlagEmbers.loc("melting/meltable_chocolate"));
 
-                /*
-                MeltingRecipeBuilder.create(AllFluids.MOLTEN_AMETHYST.getSource(), MelterBE.INGOT_SIZE * 3, Items.LARGE_AMETHYST_BUD)
-                        .unlockedBy("has_meltable_buds", has(Tags.Items.BUDS))
-                        .save(p, SlagEmbers.loc("melting/large_amethyst_bud"));
-                MeltingRecipeBuilder.create(AllFluids.MOLTEN_AMETHYST.getSource(), MelterBE.INGOT_SIZE * 2, Items.MEDIUM_AMETHYST_BUD)
-                        .unlockedBy("has_meltable_buds", has(Tags.Items.BUDS))
-                        .save(p, SlagEmbers.loc("melting/medium_amethyst_bud"));
-                MeltingRecipeBuilder.create(AllFluids.MOLTEN_AMETHYST.getSource(), MelterBE.INGOT_SIZE, Items.SMALL_AMETHYST_BUD)
-                        .unlockedBy("has_meltable_buds", has(Tags.Items.BUDS))
-                        .save(p, SlagEmbers.loc("melting/small_amethyst_bud"));
-                */
+                // The Aether
+                gemMeltable(p, "zanite", AllFluids.MOLTEN_ZANITE.getSource(),
+                        AetherTags.Items.STORAGE_BLOCKS_ZANITE, AetherTags.Items.GEMS_ZANITE, null);
+                oreMeltableGem(p, "raw_zanite", AllFluids.MOLTEN_ZANITE.getSource(),
+                        null, AetherTags.Items.ORES_ZANITE, null);
+
+                MeltingRecipeBuilder.create(AllFluids.MOLTEN_GRAVITITE.getSource(), MelterBE.BLOCK_SIZE, AetherTags.Items.PROCESSED_GRAVITITE)
+                        .unlockedBy("has_meltable_gravitite", has(AetherTags.Items.PROCESSED_GRAVITITE))
+                        .save(p, SlagEmbers.loc("melting/meltable_gravitite"));
+
+
             })
             .addLayer(() -> RenderType::cutoutMipped)
             .item()

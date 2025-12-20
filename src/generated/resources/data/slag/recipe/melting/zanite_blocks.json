@@ -1,10 +1,10 @@
 {
   "type": "slag:melting",
   "ingredient": {
-    "item": "slag:gravitite_guard"
+    "tag": "aether:storage_blocks/zanite"
   },
   "result": {
     "amount": 648,
-    "id": "slag:molten_gravitite"
+    "id": "slag:molten_zanite"
   }
 }

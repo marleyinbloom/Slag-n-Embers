@@ -1,0 +1,10 @@
+{
+  "type": "slag:melting",
+  "ingredient": {
+    "tag": "aether:ores/zanite"
+  },
+  "result": {
+    "amount": 108,
+    "id": "slag:molten_zanite"
+  }
+}
