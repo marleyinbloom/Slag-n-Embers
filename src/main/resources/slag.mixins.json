@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AxeItemAccessor",
+    "DoubleDrops",
+    "DoubleDropsModifier",
     "FurnaceResultSlotAccessor",
     "ItemStackMixin",
     "ToolHooks",

@@ -30,8 +30,38 @@ public class AllDataComponents {
             .registerComponentType("armor_type", b -> b
                     .persistent(ArmorItem.Type.CODEC).networkSynchronized(ModularArmorItem.STREAM_CODEC).cacheEncoding());
 
+    // Aether abilities
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> AETHER_EFFICIENT = REGISTER.components()
             .registerComponentType("aether_efficient", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> SKYROOT_WEAPON = REGISTER.components()
+            .registerComponentType("skyroot_weapon", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> SKYROOT_TOOL = REGISTER.components()
+            .registerComponentType("skyroot_tool", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> HOLYSTONE_WEAPON = REGISTER.components()
+            .registerComponentType("holystone_weapon", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> HOLYSTONE_TOOL = REGISTER.components()
+            .registerComponentType("holystone_tool", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> ZANITE_WEAPON = REGISTER.components()
+            .registerComponentType("zanite_weapon", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> ZANITE_TOOL = REGISTER.components()
+            .registerComponentType("zanite_tool", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> GRAVITITE_WEAPON = REGISTER.components()
+            .registerComponentType("gravitite_weapon", b -> b
+                    .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> GRAVITITE_TOOL = REGISTER.components()
+            .registerComponentType("gravitite_tool", b -> b
                     .persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding());
 
 

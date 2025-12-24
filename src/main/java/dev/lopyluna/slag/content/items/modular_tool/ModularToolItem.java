@@ -107,6 +107,13 @@ public class ModularToolItem extends Item {
         return "";
     }
 
+    public boolean isPrimarilyWeapon(ItemStack stack) {
+        return switch (getToolMixture(stack)) {
+            case "sword", "axe", "hammer", "scythe" -> true;
+            default -> false;
+        };
+    }
+
     public String getPureMixture(ItemStack pStack) {
         if (pStack.isEmpty()) return "";
         var parts = getParts(pStack);

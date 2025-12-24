@@ -91,8 +91,20 @@ public class AllLangs {
         var index = tooltip.size();
         if (stack.has(DataComponents.FIRE_RESISTANT)) tooltip.add(Component.literal(" ")
                 .append(tr("ability_fire_resistant")).withStyle(ChatFormatting.GOLD));
-        if (stack.has(AllDataComponents.AETHER_EFFICIENT)) tooltip.add(Component.literal(" ")
-                .append(tr("ability_aether_efficient")).withStyle(ChatFormatting.DARK_AQUA));
+
+        if (stack.has(AllDataComponents.AETHER_EFFICIENT)) {
+            tooltip.add(Component.literal(" ")
+                    .append(tr("ability_aether_efficient")).withStyle(ChatFormatting.DARK_AQUA));
+
+            if (stack.has(AllDataComponents.SKYROOT_TOOL)) tooltip.add(Component.literal(" ")
+                    .append(tr("ability_skyroot_tool")).withStyle(ChatFormatting.GOLD));
+            if (stack.has(AllDataComponents.HOLYSTONE_TOOL)) tooltip.add(Component.literal(" ")
+                    .append(tr("ability_holystone_tool")).withStyle(ChatFormatting.DARK_GRAY));
+            if (stack.has(AllDataComponents.ZANITE_TOOL)) tooltip.add(Component.literal(" ")
+                    .append(tr("ability_zanite_tool")).withStyle(ChatFormatting.BLUE));
+            if (stack.has(AllDataComponents.GRAVITITE_TOOL)) tooltip.add(Component.literal(" ")
+                    .append(tr("ability_gravitite_tool")).withStyle(ChatFormatting.LIGHT_PURPLE));
+        }
 
         if (tooltip.size() != index) {
             tooltip.add(index, tr("modular_abilities").append(":").withStyle(ChatFormatting.GRAY));
@@ -130,6 +142,10 @@ public class AllLangs {
         REG.addLang("tooltip", SlagEmbers.loc("modular_abilities"), "Modular Abilites");
         REG.addLang("tooltip", SlagEmbers.loc("ability_fire_resistant"), "Fire Proof");
         REG.addLang("tooltip", SlagEmbers.loc("ability_aether_efficient"), "Aetherbound");
+        REG.addLang("tooltip", SlagEmbers.loc("ability_skyroot_tool"), "Skyroot Bounty");
+        REG.addLang("tooltip", SlagEmbers.loc("ability_holystone_tool"), "Ambrosial Salvage");
+        REG.addLang("tooltip", SlagEmbers.loc("ability_zanite_tool"), "Deminished Returns");
+        REG.addLang("tooltip", SlagEmbers.loc("ability_gravitite_tool"), "Levitating Touch");
 
         REG.addLang("tooltip", SlagEmbers.loc("imprint"), "Right-click with certain items to imprint the mold.");
         REG.addLang("tooltip", SlagEmbers.loc("clear_imprint"), "Right-click with nothing to clear imprint.");

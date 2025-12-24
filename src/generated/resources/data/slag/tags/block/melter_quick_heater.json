@@ -1,8 +1,8 @@
 {
   "values": [
+    "minecraft:furnace",
     "minecraft:blast_furnace",
-    "minecraft:lava",
-    "minecraft:lava_cauldron",
+    "minecraft:smoker",
     "create:blaze_burner"
   ]
 }

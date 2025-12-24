@@ -1,7 +1,9 @@
 package dev.lopyluna.slag;
 
+import com.aetherteam.aether.item.combat.ZaniteSwordItem;
 import com.mojang.logging.LogUtils;
 import dev.lopyluna.slag.content.EmbersDatagen;
+import dev.lopyluna.slag.content.items.modular_tool.BakedModularToolItem;
 import dev.lopyluna.slag.content.jei.EmbersRecipesJEI;
 import dev.lopyluna.slag.content.utils.EmbersRegistration;
 import dev.lopyluna.slag.content.utils.Registration;
@@ -13,6 +15,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import org.slf4j.Logger;
 
@@ -52,6 +55,9 @@ public class SlagEmbers {
         modEventBus.addListener(AllSoundEvents::register);
         modEventBus.addListener(EventPriority.HIGHEST, EmbersDatagen::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, EmbersDatagen::gatherData);
+
+        IEventBus bus = NeoForge.EVENT_BUS;
+        bus.addListener(BakedModularToolItem::onModifyAttributes);
     }
 
     public static ResourceLocation loc(String loc) {

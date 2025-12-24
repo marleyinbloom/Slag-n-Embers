@@ -1,13 +1,21 @@
 package dev.lopyluna.slag.content.items.modular_tool;
 
+import com.aetherteam.aether.item.EquipmentUtil;
+import com.aetherteam.aether.item.combat.abilities.weapon.GravititeWeapon;
+import com.aetherteam.aether.item.combat.abilities.weapon.HolystoneWeapon;
 import com.mojang.datafixers.util.Pair;
+import dev.lopyluna.slag.SlagEmbers;
+import dev.lopyluna.slag.content.items.aether_abilities.GravititeTool;
 import dev.lopyluna.slag.mixin.AxeItemAccessor;
 import dev.lopyluna.slag.register.AllDataComponents;
+import dev.lopyluna.slag.register.AllMaterials;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,6 +27,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +42,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -40,32 +50,50 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import static net.minecraft.world.item.HoeItem.changeIntoState;
 
 @ParametersAreNonnullByDefault
-public class BakedModularToolItem extends ModularToolItem {
+public class BakedModularToolItem extends ModularToolItem
+        implements HolystoneWeapon, GravititeWeapon, GravititeTool {
+
     public BakedModularToolItem(Properties properties) {
         super(properties.durability(924));
     }
 
+    ResourceLocation DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(SlagEmbers.MOD_ID, "zanite_weapon_attack_damage");
+
     @Override
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
-        var fire_flag = false;
-        for (var part : getToolParts(stack)) if (part.getMaterialType().fireProof) {
-            fire_flag = true;
-            break;
-        }
-        if (fire_flag) stack.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
+        var isWeapon = isPrimarilyWeapon(stack);
+        for (var part : getToolParts(stack)) {
+            if (part.getMaterialType().fireProof) stack.set(DataComponents.FIRE_RESISTANT, Unit.INSTANCE);
 
-        var aether_flag = false;
-        for (var part : getToolParts(stack)) if (part.getMaterialType().aetherEfficient) {
-            aether_flag = true;
-            break;
+            // Aether abilities
+            if (part.getMaterialType().aetherEfficient) {
+                stack.set(AllDataComponents.AETHER_EFFICIENT, Unit.INSTANCE);
+
+                if (part.getMaterialType() == AllMaterials.SKYROOT) {
+                    if (isWeapon) stack.set(AllDataComponents.SKYROOT_WEAPON, Unit.INSTANCE);
+                    stack.set(AllDataComponents.SKYROOT_TOOL, Unit.INSTANCE);
+                }
+                if (part.getMaterialType() == AllMaterials.HOLYSTONE) {
+                    if (isWeapon) stack.set(AllDataComponents.HOLYSTONE_WEAPON, Unit.INSTANCE);
+                    stack.set(AllDataComponents.HOLYSTONE_TOOL, Unit.INSTANCE);
+                }
+                if (part.getMaterialType() == AllMaterials.ZANITE) {
+                    if (isWeapon) stack.set(AllDataComponents.ZANITE_WEAPON, Unit.INSTANCE);
+                    stack.set(AllDataComponents.ZANITE_TOOL, Unit.INSTANCE);
+                }
+                if (part.getMaterialType() == AllMaterials.GRAVITITE) {
+                    if (isWeapon) stack.set(AllDataComponents.GRAVITITE_WEAPON, Unit.INSTANCE);
+                    stack.set(AllDataComponents.GRAVITITE_TOOL, Unit.INSTANCE);
+                }
+            }
         }
-        if (aether_flag) stack.set(AllDataComponents.AETHER_EFFICIENT, Unit.INSTANCE);
 
         return super.getDefaultAttributeModifiers(stack)
                 .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, averageMod(stack, IToolPart::getSharp) * averageMod(stack, IToolPart::getSharpMod), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -126,6 +154,15 @@ public class BakedModularToolItem extends ModularToolItem {
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (stack.has(AllDataComponents.AETHER_EFFICIENT)) {
+            if (stack.has(AllDataComponents.GRAVITITE_WEAPON)) {
+                this.launchEntity(target, attacker);
+            }
+            if (stack.has(AllDataComponents.HOLYSTONE_WEAPON)) {
+                this.dropAmbrosium(target, attacker);
+            }
+        }
+
         return true;
     }
 
@@ -179,6 +216,17 @@ public class BakedModularToolItem extends ModularToolItem {
     public @NotNull InteractionResult useOn(UseOnContext context) {
         var stack = context.getItemInHand();
         List<String> tool = new ArrayList<>();
+
+        if (stack.has(AllDataComponents.AETHER_EFFICIENT)) {
+            if (stack.has(AllDataComponents.GRAVITITE_TOOL)) {
+                if (!this.floatBlock(context)) {
+                    return super.useOn(context);
+                } else {
+                    return InteractionResult.sidedSuccess(context.getLevel().isClientSide());
+                }
+            }
+        }
+
         for (var part : getToolParts(stack)) {
             var path = part.getPartSegment().getPath();
             if (path.equals("pickaxe_head") && !tool.contains("pickaxe")) tool.add("pickaxe");
@@ -213,6 +261,7 @@ public class BakedModularToolItem extends ModularToolItem {
                 if (axe.consumesAction()) return axe;
             }
         }
+
         return super.useOn(context);
     }
 
@@ -300,6 +349,43 @@ public class BakedModularToolItem extends ModularToolItem {
                     return optional2;
                 } else return Optional.empty();
             }
+        }
+    }
+
+    public ItemAttributeModifiers.Entry increaseDamage(ItemAttributeModifiers modifiers, ItemStack stack) {
+        return new ItemAttributeModifiers.Entry(Attributes.ATTACK_DAMAGE,
+                new AttributeModifier(DAMAGE_MODIFIER_ID, this.calculateDamageIncrease(Attributes.ATTACK_DAMAGE, DAMAGE_MODIFIER_ID, modifiers, stack), AttributeModifier.Operation.ADD_VALUE),
+                EquipmentSlotGroup.MAINHAND);
+    }
+
+    private int calculateDamageIncrease(Holder<Attribute> base, ResourceLocation bonusModifier, ItemAttributeModifiers modifiers, ItemStack stack) {
+        if (!stack.has(AllDataComponents.ZANITE_WEAPON)) return 0;
+        
+        AtomicReference<Double> baseStat = new AtomicReference<>(0.0);
+        modifiers.forEach(EquipmentSlotGroup.MAINHAND, (attribute, modifier) -> {
+            if (attribute.value() == base.value() && !modifier.id().equals(bonusModifier)) {
+                baseStat.updateAndGet(v -> v + modifier.amount());
+            }
+        });
+        double baseDamage = baseStat.get();
+        double boostedDamage = EquipmentUtil.calculateZaniteBuff(stack, baseDamage);
+        boostedDamage -= baseDamage;
+        if (boostedDamage < 0.0) {
+            boostedDamage = 0.0;
+        }
+        return (int) Math.round(boostedDamage);
+    }
+
+    public static void onModifyAttributes(ItemAttributeModifierEvent event) {
+        ItemAttributeModifiers modifiers = event.getDefaultModifiers();
+        ItemStack itemStack = event.getItemStack();
+        if (itemStack.getItem() instanceof BakedModularToolItem toolItem && itemStack.has(AllDataComponents.ZANITE_WEAPON)) {
+            var entry = toolItem.increaseDamage(modifiers, itemStack);
+            if (entry instanceof ItemAttributeModifiers.Entry(
+                    net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute,
+                    AttributeModifier modifier, EquipmentSlotGroup slot
+            ))
+                event.replaceModifier(attribute, modifier, slot);
         }
     }
 }
